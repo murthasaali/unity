@@ -7,7 +7,7 @@ import AllProducts from './adimin/allProducts'
 import Dashboard from './adimin/Dashboard'
 import Sales from './adimin/sales'
 import Users from './adimin/users'
-import LandingPge from './usersection/landingPge'
+// import LandingPge from './usersection/landingPge'
 import Login from './usersection/login'
 import { Registration } from './usersection/registration'
 import UserCart from './usersection/cart'
@@ -38,7 +38,7 @@ function App() {
 
                <Bottombar/>
           <Routes>
-            <Route path='/' element={<LandingPge />} />
+            {/* <Route path='/' element={<LandingPge />} /> */}
             <Route path='/admin/add' element={<AddProduct />} />
             <Route path='/admin/all' element={<AllProducts />} />
             <Route path='/admin/dashboard' element={<Dashboard />} />
@@ -47,7 +47,7 @@ function App() {
             <Route path='/admin/edit/:id' element={<EditProduct />} />
                <Route path='/login' element={<Login />} />
                <Route path='/reg' element={<Registration />} />
-               <Route path='/community' element={<Community />} />
+               <Route path='/' element={<Community />} />
                <Route path='/cart' element={<UserCart/>} />
                <Route path='/wishlist' element={<UserWishlist/>} />
 
