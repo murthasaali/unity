@@ -109,7 +109,7 @@ export const getAllcomments = async (postId) => {
 
     // Send a DELETE request to the appropriate endpoint to delete the post
     const response = await axios.get(
-      `http://localhost:3001/posts/getAllComment/${postId}`,
+      `https://ecommerce-api-shne.onrender.com/posts/getAllComment/${postId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`

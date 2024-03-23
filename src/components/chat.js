@@ -5,7 +5,7 @@ import { BiCheckDouble } from "react-icons/bi";
 import UserChatModal from './userChatModal';
 import Unfollowlist from './unfollowlist';
 
-const socket = io('http://localhost:3001'); // Replace with your server URL
+const socket = io('https://ecommerce-api-shne.onrender.com'); // Replace with your server URL
 
 function Chat() {
   const [messages, setMessages] = useState([]);
@@ -35,7 +35,7 @@ function Chat() {
     try {
       const token = localStorage.getItem('token');
       console.log(token)
-      const response = await axios.get('http://localhost:3001/messages/getchattedusers', {
+      const response = await axios.get('https://ecommerce-api-shne.onrender.com/messages/getchattedusers', {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -10,7 +10,7 @@ import io from 'socket.io-client'; // Import Socket.IO client library
 import { IoSend } from 'react-icons/io5';
 import { BsEmojiSmileFill } from 'react-icons/bs';
 
-const socket = io('http://localhost:3001'); // Connect to your Socket.IO server
+const socket = io('https://ecommerce-api-shne.onrender.com'); // Connect to your Socket.IO server
 
 function UserChatModal({ setOpen, open, item }) {
   const onCloseModal = () => setOpen(false);

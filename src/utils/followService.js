@@ -6,7 +6,7 @@ export const getAllUnfollowedUsers = async (userId) => {
     const token = localStorage.getItem("token")
     
 
-    const response = await axios.get(`http://localhost:3001/follows/unfollowingusers/${userId}`, {
+    const response = await axios.get(`https://ecommerce-api-shne.onrender.com/follows/unfollowingusers/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -24,7 +24,7 @@ export const followUser = async (userIdToFollow,name) => {
   try {
     const token = localStorage.getItem("token");
 
-    const response = await axios.post(`http://localhost:3001/follows/follow/${userIdToFollow}`, null, {
+    const response = await axios.post(`https://ecommerce-api-shne.onrender.com/follows/follow/${userIdToFollow}`, null, {
       headers: {
         Authorization: `Bearer ${token}`
       }

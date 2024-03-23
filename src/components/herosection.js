@@ -21,7 +21,7 @@ function Herosection() {
             transition={{ delay: 1 }}
           >with home delivery"</motion.span>
         </h1>
-        <p className='text-xl font-thin'>Online pet store - a convenient solution when you're too lazy to leave the house.</p>
+        <p className='text-xs font-thin'>Online pet store - a convenient solution when you're too lazy to leave the house.</p>
         <Button height="12" content="Shop Now"  icon={<MdOutlinePets/>}/>
       </div>
       <div className='md:w-1/2 w-full md:h-96 h-52  rounded-3xl relative' style={{ backgroundImage: `url(${hero})`, backgroundSize: 'cover', backgroundPosition: 'right', backgroundRepeat: 'no-repeat'}}>
