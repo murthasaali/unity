@@ -176,7 +176,7 @@ console.log(selectedEmoji)
                                         <button><FaDotCircle /></button>
                                     </div>
                                 </div>
-                                <div className="h-[350px] md:h-[500px] relative rounded-lg md:w-[90%] w-[350px]" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+                                <div className="h-[380px] md:h-[500px] relative rounded-lg md:w-[90%] w-[380px]" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
                                     {(posts.length - 1 === index) &&
                                         <button onClick={() => setPage(page + 1)}
                                             className="absolute bottom-10 right-1/2 text-stone-50 text-3xl text-opacity-40 p-1 z-50 flex animate-bounce duration-300 ease-in-out infinite"
