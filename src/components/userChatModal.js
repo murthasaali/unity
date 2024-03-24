@@ -85,11 +85,11 @@ function UserChatModal({ setOpen, open, item }) {
                   ?
                   <div key={index} className='w-full flex h-auto justify-end'>
 
-                    <div className='text-stone-50 text-opacity-80 w-fit font-thin text-xs py-1 px-4   text-end bg-stone-300 bg-opacity-20 rounded-b-2xl rounded-tl-2xl ' >{message.message}</div>
+                    <div className='text-black text-opacity-80 w-fit font-thin text-xs py-1 px-4   text-end bg-black0 bg-opacity-20 rounded-b-2xl rounded-tl-2xl ' >{message.message}</div>
                   </div> :
                   <div key={index} className='w-full flex h-auto justify-start'>
 
-                    <div className='text-stone-50 text-opacity-80 w-fit font-thin text-xs py-1 px-4   text-end bg-stone-300 bg-opacity-20 rounded-b-2xl rounded-tl-2xl ' >{message.message}</div>
+                    <div className='text-black text-opacity-80 w-fit font-thin text-xs py-1 px-4   text-end bg-stone-300 bg-opacity-20 rounded-b-2xl rounded-tl-2xl ' >{message.message}</div>
                   </div>
                 }
               </div>

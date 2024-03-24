@@ -84,7 +84,7 @@ const onSubmit=async(data)=>{
       :<button onClick={()=>navigate("/login")} className='p-2 rounded-full bg-black text-xl'>
       <RiLoginCircleLine className='text-white' />
         </button>}
-      <Modal open={open}  onClose={onCloseModal} center classNames={{ modal: 'w-[40%] bg-transparent rounded-lg backdrop-blur-md ', closeButton: 'text-white' }}>
+      <Modal open={open}  onClose={onCloseModal} center classNames={{ modal: 'w-[80%] md:w-[40%]  rounded-lg bg-black ', closeButton: 'text-white' }}>
 <form  onSubmit={handleSubmit(onSubmit)}>
 <div className="avatar">
         <div className="md:w-14 w-10 rounded-full" onClick={() => setOpen(true)}>

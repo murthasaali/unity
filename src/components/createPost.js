@@ -72,7 +72,7 @@ console.log(selectedFile)
           <RiLoginCircleLine className='text-white' />
         </button>
       }
-      <Modal open={open} onClose={()=>setOpen(true)} onOverlayClick={()=>setOpen(true)} closeIcon=" " center classNames={{ modal: 'bg-transparent rounded-lg backdrop-blur-md ', closeButton: 'text-white' }}>
+      <Modal open={open} onClose={()=>setOpen(true)} onOverlayClick={()=>setOpen(true)} closeIcon=" " center styles={{}} classNames={{ modal: 'bg-stone-800 w-[80%] md:w-[40% ] rounded-lg bg-opacity-40 ', closeButton: 'text-white' }}>
         <form onSubmit={handleSubmit(onSubmit)} >
           <button onClick={onCloseModal} className='border border-stone-50 p-1 rounded-full'><RiArrowDropLeftLine className='text-2xl text-white '/></button>
           <div className='w-full h-full flex flex-col'>

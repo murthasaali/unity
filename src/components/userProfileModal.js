@@ -21,7 +21,7 @@ function UserProfileModal({ setOpen, open }) {
         <button onClick={() => navigate("/login")} className='p-2 rounded-full bg-black text-xl'>
           <RiLoginCircleLine className='text-white' />
         </button>}
-      <Modal open={open}  onClose={onCloseModal} center classNames={{ modal: 'bg-white rounded-lg backdrop-blur-md ', closeButton: 'text-white' }} styles={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}>
+      <Modal open={open}  onClose={onCloseModal} center classNames={{ modal: ' rounded-lg backdrop-blur-md ', closeButton: 'text-white' }} styles={{ overlay: { backgroundColor: 'rgba(0, 0, 0, 0.5)' } }}>
     
       </Modal>
     </div>
