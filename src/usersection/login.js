@@ -5,6 +5,7 @@ import axios from 'axios';
 import { setToken, setUserid } from '../redux/authSlice';
 import Loading from '../components/loading';
 import toast from 'react-hot-toast'
+import { Controls, Player } from '@lottiefiles/react-lottie-player';
 function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
@@ -71,9 +72,10 @@ function Login() {
   return (
     <div className=' h-screen w-screen flex justify-center items-center bg-black' >
       <div className="flex  flex-col justify-center w-full h-full    py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="sm:mx-auto sm:w-full sm:max-w-sm absolute">
 
           <h1 className=" text-center text-2xl font-thin leading-9 tracking-tight ">Sign in to your account</h1>
+       
         </div>
 
 

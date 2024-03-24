@@ -42,40 +42,7 @@ export const likeaPost = async (postId) => {
     );
 
     // Return the data from the response
-    console.log(response.data);
-    if(response.data.message==="Post liked successfully")
-   { toast(`you liked this post`,
-    {
-      icon: '😍',
-      style: {
-        borderRadius: '5px',
-        background: '#333',
-        color: '#fff',
-        fontSize: '10px', /* Adjust the font size */
-        fontWeight: '100', /* Adjust the font weight */
-        padding: '5px', /* Adjust padding */
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', /* Add shadow */
-        textAlign: 'center', /* Center align text */
-      },
-    }
-  )}else{
-    toast(`you dislikedliked this post`,
-    {
-      icon: '🥴',
-      style: {
-        borderRadius: '5px',
-        background: '#333',
-        color: '#fff',
-        fontSize: '10px', /* Adjust the font size */
-        fontWeight: '100', /* Adjust the font weight */
-        padding: '5px', /* Adjust padding */
-        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', /* Add shadow */
-        textAlign: 'center', /* Center align text */
-      },
-    }
-    )
 
-  }
     
     return response.data;
   } catch (error) {

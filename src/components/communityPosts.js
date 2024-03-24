@@ -18,6 +18,7 @@ import axios from 'axios';
 
 import { IoSend } from "react-icons/io5";
 import Unfollowlist from './unfollowlist';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 const items = {
     hidden: { y: 20, opacity: 0 },
@@ -29,6 +30,7 @@ const items = {
 
 function CommunityPosts() {
     const { register, handleSubmit } = useForm();
+    const [loadingPostId, setLoadingPostId] = useState(null);
 
     const [showEmojiPicker, setShowEmojiPicker] = useState(false);
     const [selectedEmoji, setSelectedEmoji] = useState(null);
@@ -38,7 +40,7 @@ function CommunityPosts() {
     const [modalOpen, setModalOpen] = useState(false);
     const [selectedPostId, setSelectedPostId] = useState(null); // State to track which post's chat modal is open
     const [page, setPage] = useState(1); // Track pagination page
-
+    const [likeLoading, setLikeLOading] = useState(false)
     useEffect(() => {
         const fetchPosts = async () => {
             try {
@@ -56,7 +58,7 @@ function CommunityPosts() {
     const handleScroll = () => {
         const scrollPosition = window.innerHeight + window.scrollY;
         const pageHeight = document.documentElement.scrollHeight;
-console.log(pageHeight)
+        console.log(pageHeight)
         // Calculate the index of the last post displayed
         const lastIndexDisplayed = Math.min(posts.length - 1, Math.floor(scrollPosition / document.documentElement.clientHeight));
 
@@ -110,7 +112,7 @@ console.log(pageHeight)
     };
 
 
-console.log(selectedEmoji)
+    console.log(selectedEmoji)
     const onSubmit = async (data, postId) => {
         try {
             const token = localStorage.getItem("token");
@@ -133,6 +135,59 @@ console.log(selectedEmoji)
         }
     };
 
+
+    const liking = async (postid) => {
+        try {
+            setLoadingPostId(postid); // Set loadingPostId to indicate the animation is loading for this post
+
+            const res = await likeaPost(postid)
+            if (res.message === "Post liked successfully") {
+                setLikeLOading(true)
+                setTimeout(() => {
+                    setLikeLOading(false)
+                    setLoadingPostId(null); // Reset loadingPostId once animation is done
+
+                    
+                }, 3000);
+                toast(`you liked this post`,
+                {
+                    icon: '🥴',
+                    style: {
+                        borderRadius: '5px',
+                        background: '#333',
+                        color: '#fff',
+                        fontSize: '10px', /* Adjust the font size */
+                        fontWeight: '100', /* Adjust the font weight */
+                        padding: '5px', /* Adjust padding */
+                        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', /* Add shadow */
+                        textAlign: 'center', /* Center align text */
+                    },
+                }
+            )
+             
+            } else {
+                toast(`you dislikedliked this post`,
+                    {
+                        icon: '🥴',
+                        style: {
+                            borderRadius: '5px',
+                            background: '#333',
+                            color: '#fff',
+                            fontSize: '10px', /* Adjust the font size */
+                            fontWeight: '100', /* Adjust the font weight */
+                            padding: '5px', /* Adjust padding */
+                            boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)', /* Add shadow */
+                            textAlign: 'center', /* Center align text */
+                        },
+                    }
+                )
+
+            }
+        } catch (error) {
+
+        }
+
+    }
     return (
         <div className='h-full w-full '>
             {posts.map((item, index) => (
@@ -142,7 +197,7 @@ console.log(selectedEmoji)
                         <div className='w-full backdrop-cyan-600 h-fit p-1 flex flex-col gap-2'>
                             <div className='w-full md:h-[450px] h-auto bg-opacity-50 md:gap-4 gap-1  backdrop-blur-sm relative rounded-3xl flex flex-col justify-center px-4 items-center md:items-start'>
                                 <div className='w-auto mt-2 text-xl p-3 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96'>
-                                    <button className='w-20 flex justify-center items-center flex-col hover:text-2xl  text-red-500 transition-all duration-300 py-3 hover:text-red-500' onClick={() => likeaPost(item._id)}>
+                                    <button className='w-20 flex justify-center items-center flex-col hover:text-2xl  text-red-500 transition-all duration-300 py-3 hover:text-red-500' onClick={() => liking(item._id)}>
                                         <CiHeart />
                                         <div className='text-xs text-stone-900'>liked by {item.likesCount ? item.likesCount : "0"} </div>
                                     </button>
@@ -160,7 +215,7 @@ console.log(selectedEmoji)
                                         <div
                                             className='w-10 h-10 rounded-full bg-white relative'
                                             style={{
-                                                backgroundImage: `url(${item.postedBy.image })`,
+                                                backgroundImage: `url(${item.postedBy.image})`,
                                                 backgroundPosition: 'center',
                                                 backgroundRepeat: 'no-repeat',
                                                 backgroundSize: 'cover',
@@ -187,6 +242,16 @@ console.log(selectedEmoji)
 
                                         </button>
                                     }
+                                    {(loadingPostId === item._id&&likeLoading)  && (
+                                        <div className="absolute top-0 left-0 w-[100px]   h-[100px]  flex justify-center items-center" style={{zIndex:999}}>
+                                            <Player
+                                                src="https://lottie.host/0bb4d081-4124-4a8c-987b-4a46982e91cc/Naj4kVQ2pk.json"
+                                                autoplay
+                                                loop
+                                                style={{ height: '100px', width: '100px' }}
+                                            ></Player>
+                                        </div>
+                                    )}
                                     <div className='w-full relative h-full bg-gray-950 text-xl bg-opacity-30 rounded-lg'>
                                         <motion.div
                                             variants={container}
@@ -234,7 +299,7 @@ console.log(selectedEmoji)
                                     </div>
                                 </div>
                                 <div className='w-full h-auto p-3 flex md:hidden justify-around rounded-lg'>
-                                    <button onClick={() => likeaPost(item._id)}> <CiHeart /></button>
+                                    <button onClick={() => liking(item._id)}> <CiHeart />  </button>
                                     <button> <MdChat onClick={() => toggleChatModal(item._id)} /></button>
                                     <button> <MdShare /></button>
                                     <button onClick={() => handleDownload(item.image)}>
