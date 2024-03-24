@@ -6,7 +6,7 @@ import { CiChat1 } from "react-icons/ci";
 
 
 import { FiAlignCenter } from "react-icons/fi";
-import { getAllPosts } from '../utils/communityServices';
+import { getAllPosts, getUserProfile } from '../utils/communityServices';
 import Search from '../components/search';
 import Notification from '../components/notification';
 import Account from '../components/account';
@@ -15,7 +15,22 @@ import CommunityPosts from '../components/communityPosts';
 function Community() {
     const [activeButton, setActiveButton] = useState('house');
     const [posts, setPosts] = useState([]);
-
+    const [userProfile,setUserProfile]=useState({})
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const profileData = await getUserProfile();
+            setUserProfile(profileData.user);
+           
+                
+           
+          } catch (error) {
+            console.error('Error fetching user pr ofile:', error);
+          }
+        };
+    
+        fetchData();
+      }, []);
 
 
 
@@ -66,11 +81,11 @@ function Community() {
         <div className='w-full h-screen  flex flex-col justify-start items-center overflow-hidden bg-black '  >
 
             <div className='w-full bg-black h-auto p-2 flex md:hidden justify-evenly absolute bottom-0 z-50'>
-                <button className={`h-fit p-3 rounded-xl text-green-500 bg-opacity-60 ${activeButton === 'house' ? '' : ''}`} onClick={() => setActiveButton('house')}><CiHome className='hover:scale-125 transition-all duration-300 ' /></button>
-                <button className={`h-fit p-3 rounded-xl text-green-500 bg-opacity-60 ${activeButton === 'search' ? '' : ''}`} onClick={() => setActiveButton('search')}><CiSearch className='hover:scale-125 transition-all duration-300 ' /></button>
-                <button className={`h-fit p-3 rounded-xl text-green-500 bg-opacity-60 ${activeButton === 'edit' ? '' : ''}`} onClick={() => setActiveButton('edit')}><CiChat1 className='hover:scale-125 transition-all duration-300 ' /></button>
-                <button className={`h-fit p-3 rounded-xl text-green-500 bg-opacity-60 ${activeButton === 'heart' ? '' : ''}`} onClick={() => setActiveButton('heart')}><CiHeart className='hover:scale-125 transition-all duration-300 ' /></button>
-                <button className={`h-fit p-3 rounded-xl text-green-500 bg-opacity-60 ${activeButton === 'user' ? '' : ''}`} onClick={() => setActiveButton('user')}><CiUser className='hover:scale-125 transition-all duration-300 ' /></button>
+                <button className={`h-fit p-3  text-2xl text-green-500 bg-opacity-60 ${activeButton === 'house' ? '' : ''}`} onClick={() => setActiveButton('house')}><CiHome className='hover:scale-125 transition-all duration-300 ' /></button>
+                <button className={`h-fit p-3  text-2xl text-green-500 bg-opacity-60 ${activeButton === 'search' ? '' : ''}`} onClick={() => setActiveButton('search')}><CiSearch className='hover:scale-125 transition-all duration-300 ' /></button>
+                <button className={`h-fit p-3  text-2xl text-green-500 bg-opacity-60 ${activeButton === 'edit' ? '' : ''}`} onClick={() => setActiveButton('edit')}><CiChat1 className='hover:scale-125 transition-all duration-300 ' /></button>
+                <button className={`h-fit p-3  text-2xl text-green-500 bg-opacity-60 ${activeButton === 'heart' ? '' : ''}`} onClick={() => setActiveButton('heart')}><CiHeart className='hover:scale-125 transition-all duration-300 ' /></button>
+                <button className={`h-fit p-3  text-2xl text-green-500 bg-opacity-60 ${activeButton === 'user' ? '' : ''}`} onClick={() => setActiveButton('user')}><img className='hover:scale-125 transition-all duration-300 h-6  w-6 rounded-full' src={userProfile.image}/></button>
             </div>
             <div className='w-full h-20  mb-2 hidden md:flex bg-black justify-between px-3 items-center'>
 
