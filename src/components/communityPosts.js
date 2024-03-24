@@ -190,6 +190,141 @@ function CommunityPosts() {
     }
     return (
         <div className='h-full w-full '>
+
+
+            {
+                posts.length===0&&(
+                    <>
+
+                    <div className={`relative  `} >
+                        <div className='w-full  h-fit p-1 flex flex-col gap-2'>
+                            <div className='w-full md:h-[450px] h-auto bg-opacity-50 md:gap-4 gap-1  backdrop-blur-sm relative rounded-3xl flex flex-col justify-center px-4 items-center md:items-start'>
+                                <div className='w-auto mt-2 text-xl p-3 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96'>
+                                    <button className='w-20 flex justify-center items-center flex-col hover:text-2xl  text-red-500 transition-all duration-300 py-3 hover:text-red-500'>
+                                        <CiHeart />
+                                        <div className='text-xs text-stone-900'>liked by  </div>
+                                    </button>
+                                    <button className='w-20 flex justify-center items-center hover:text-2xl transition-all duration-300 py-3 ' >
+                                        <MdChat />                                </button>
+                                    <button className='w-20 flex justify-center items-center hover:text-2xl transition-all duration-300 py-3 '>
+                                        <MdShare />
+                                    </button>
+                                    <button className='w-20 flex justify-center items-center hover:text-2xl transition-all duration-300 py-3 ' >
+                                        <MdSaveAlt />
+                                    </button>
+                                </div>
+                                <div className='w-full h-auto flex justify-between items-center mt-2'>
+                                    <div className='flex justify-center items-end gap-[10px] bg-transparent'>
+                                        <div
+                                            className='w-14 h-14 rounded-full skeleton relative'
+                                          
+                                        >
+                                            {/* <FaPlus className='absolute bottom-1 p-1 bg-black rounded-full text-white text-xl right-1' /> */}
+                                        </div>
+
+                                        {/* <img src={item.postedBy.image} className='h-10 w-10 md:h-14 md:w-14 rounded-full' /> */}
+                                        <p className='text-xs text-orange-500 p-3 w-20 skeleton' ></p>
+                                    </div>
+                                    <div className='flex items-center skeleton gap-3'>
+                                        <button><FaDotCircle /></button>
+                                    </div>
+                                </div>
+                                <div className="h-[380px] md:h-[500px] relative rounded-lg md:w-[90%] w-[380px] skeleton" >
+                                   
+                                
+                                    <div className='w-full relative h-full bg-gray-950 text-xl bg-opacity-30 rounded-lg'>
+                                        <motion.div
+                                            variants={container}
+                                            initial="hidden"
+                                            animate="visible" className='h-[400px]   bg-opacity-30 w-full overflow-y-scroll p-3 flex flex-col items-center'>
+                                          
+                                           
+
+                                        </motion.div>
+
+                                       
+                                    </div>
+                                </div>
+                                <div className='w-full h-auto p-3 flex md:hidden justify-around rounded-lg'>
+                                    <button> <CiHeart />  </button>
+                                    <button> <MdChat  /></button>
+                                    <button> <MdShare /></button>
+                                    <button >
+                                        <MdSaveAlt />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div className={`relative  md:mt-20 mt-4 `} >
+                        <div className='w-full  h-fit p-1 flex flex-col gap-2'>
+                            <div className='w-full md:h-[450px] h-auto bg-opacity-50 md:gap-4 gap-1  backdrop-blur-sm relative rounded-3xl flex flex-col justify-center px-4 items-center md:items-start'>
+                                <div className='w-auto mt-2 text-xl p-3 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96'>
+                                    <button className='w-20 flex justify-center items-center flex-col hover:text-2xl  text-red-500 transition-all duration-300 py-3 hover:text-red-500'>
+                                        <CiHeart />
+                                        <div className='text-xs text-stone-900'>liked by  </div>
+                                    </button>
+                                    <button className='w-20 flex justify-center items-center hover:text-2xl transition-all duration-300 py-3 ' >
+                                        <MdChat />                                </button>
+                                    <button className='w-20 flex justify-center items-center hover:text-2xl transition-all duration-300 py-3 '>
+                                        <MdShare />
+                                    </button>
+                                    <button className='w-20 flex justify-center items-center hover:text-2xl transition-all duration-300 py-3 ' >
+                                        <MdSaveAlt />
+                                    </button>
+                                </div>
+                                <div className='w-full h-auto flex justify-between items-center mt-2'>
+                                    <div className='flex justify-center items-end gap-[10px] bg-transparent'>
+                                        <div
+                                            className='w-14 h-14 rounded-full skeleton relative'
+                                          
+                                        >
+                                            {/* <FaPlus className='absolute bottom-1 p-1 bg-black rounded-full text-white text-xl right-1' /> */}
+                                        </div>
+
+                                        {/* <img src={item.postedBy.image} className='h-10 w-10 md:h-14 md:w-14 rounded-full' /> */}
+                                        <p className='text-xs text-orange-500 p-3 w-20 skeleton' ></p>
+                                    </div>
+                                    <div className='flex items-center skeleton gap-3'>
+                                        <button><FaDotCircle /></button>
+                                    </div>
+                                </div>
+                                <div className="h-[380px] md:h-[500px] relative rounded-lg md:w-[90%] w-[380px] skeleton" >
+                                   
+                                
+                                    <div className='w-full relative h-full bg-gray-950 text-xl bg-opacity-30 rounded-lg'>
+                                        <motion.div
+                                            variants={container}
+                                            initial="hidden"
+                                            animate="visible" className='h-[400px]   bg-opacity-30 w-full overflow-y-scroll p-3 flex flex-col items-center'>
+                                          
+                                           
+
+                                        </motion.div>
+
+                                       
+                                    </div>
+                                </div>
+                                <div className='w-full h-auto p-3 flex md:hidden justify-around rounded-lg'>
+                                    <button> <CiHeart />  </button>
+                                    <button> <MdChat  /></button>
+                                    <button> <MdShare /></button>
+                                    <button >
+                                        <MdSaveAlt />
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+
+
+                </>
+                )
+            }
             {posts.map((item, index) => (
                 <>
 

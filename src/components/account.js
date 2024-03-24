@@ -33,15 +33,8 @@ function Account() {
 
 
   const renderUserProfile = () => (
-    <div className='w-full h-full flex flex-col gap-4 p-2'>
-    <div className='w-full flex justify-between items-center'>
-      <button className='flex items-center  gap-1 text-xl'>
-        <span>{userProfile.email ? userProfile.email : 'none  '}</span>{' '}
-        <FaArrowDown className='text-xs' />
-      </button>
-     
-        <PiDotsThreeOutlineVerticalThin className='text-black text-2xl' />
-    </div>
+    <div className='w-full h-full flex  flex-col gap-4 p-2'>
+    
     <div className='w-full flex justify-between items-center'>
       <div
         className='w-24 h-24 rounded-full bg-white relative'
@@ -117,53 +110,41 @@ function Account() {
     return (
         
             <div className='w-full h-full flex flex-col gap-4 p-2'>
-              {/* Email and actions section */}
+             
               <div className='w-full flex justify-between items-center'>
-                <div className='flex items-center gap-1 text-xl'>
-                  <div className='skeleton-email w-24 h-4'></div>
-                  <div className='skeleton-arrow-down w-4 h-4'></div>
-                </div>
-                <div className='flex items-center gap-3 text-xs'>
-                  <div className='skeleton-plus-square w-4 h-4'></div>
-                  <div className='skeleton-dice-three w-4 h-4'></div>
-                </div>
-              </div>
-        
-              {/* User profile information */}
-              <div className='w-full flex justify-between items-center'>
-                <div className='w-24 h-24 rounded-full bg-stone-50'></div>
+                <div className='w-24 h-24 rounded-full skeleton'></div>
                 <div className='flex flex-col justify-start items-center'>
-                  <div className='skeleton-posts w-8 h-4'></div>
-                  <div className='skeleton-text w-6 h-3 mt-1'></div>
+                  <div className='skeleton w-8 h-8'></div>
+                  <div className='skeleton w-20 h-3 mt-1'></div>
                 </div>
                 <div className='flex flex-col justify-start items-center'>
-                  <div className='skeleton-followers w-8 h-4'></div>
-                  <div className='skeleton-text w-6 h-3 mt-1'></div>
+                  <div className='skeleton w-8 h-8'></div>
+                  <div className='skeleton w-20 h-3 mt-1'></div>
                 </div>
                 <div className='flex flex-col justify-start items-center'>
-                  <div className='skeleton-following w-8 h-4'></div>
-                  <div className='skeleton-text w-6 h-3 mt-1'></div>
+                  <div className='skeleton w-8 h-8'></div>
+                  <div className='skeleton w-20 h-3 mt-1'></div>
                 </div>
               </div>
         
               {/* Additional content */}
               <div className='w-full flex flex-col gap-1'>
-                <div className='skeleton-content w-44 h-12 rounded-lg bg-stone-50'></div>
-                <div className='skeleton-content w-32 h-12 rounded-lg bg-stone-50'></div>
-                <div className='skeleton-content w-44 h-12 rounded-lg bg-stone-50'></div>
+                <div className='skeleton w-44 h-8 rounded-lg  '></div>
+                <div className='skeleton w-44 h-8 rounded-lg '></div>
               </div>
         
               {/* Action buttons */}
-              <div className='w-full flex gap-1'>
-                <div className='md:p-2 p-1 w-1/2 rounded-lg bg-stone-50 font-bold'></div>
-                <button className='md:p-2 p-1 w-1/2 rounded-lg bg-stone-50 font-bold'></button>
+              <div className='w-full flex justify-between gap-1'>
+                <div className='md:p-2 p-1 w-[30%] rounded-lg skeleton h-8 font-bold'></div>
+                <button className='md:p-2 p-1 w-[30%] rounded-lg skeleton h-8 font-bold'></button>
+                <button className='md:p-2 p-1 w-[30%] rounded-lg skeleton h-8 font-bold'></button>
               </div>
         
               {/* User posts */}
               <div className='grid-container grid w-full grid-cols-3 md:gap-2 gap-1'>
                 {/* Render skeleton UI for posts */}
                 {Array.from({ length: 6 }).map((_, index) => (
-                  <div key={index} className='skeleton-post'></div>
+                  <div key={index} className='skeleton  relative rounded-lg  text-center text-3xl md:h-52 h-32'></div>
                 ))}
               </div>
             </div>

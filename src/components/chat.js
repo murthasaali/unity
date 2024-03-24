@@ -9,6 +9,7 @@ const socket = io('https://ecommerce-api-shne.onrender.com'); // Replace with yo
 
 function Chat() {
   const [messages, setMessages] = useState([]);
+  const [loading,setLoading]=useState(false)
   const [inputMessage, setInputMessage] = useState('');
   const [chattedUsers, setChattedUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null); // Track selected user
