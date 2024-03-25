@@ -41,14 +41,11 @@ const Search = () => {
 
     return (
         <>
-            <div className="max-w-md mx-auto my-3  w-full">
-                <div className="relative">
-                    <input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Search...." className="w-full bg-opacity-25  bg-stone-950 px-3 py-2 focus:border-none" />
+            <div className="  my-3  w-full  ">
+                    <input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Search...." className="w-full bg-opacity-25  bg-stone-950 px-3 py-2 "     style={{border: 'none'}}
+ />
 
-                </div>
-                <div className="mt-4">
-                    {/* Render search results here */}
-                </div>
+               
             </div>
             {!input.length > 0 ? (
                 posts.length > 0 ? (
