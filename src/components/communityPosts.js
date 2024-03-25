@@ -379,12 +379,12 @@ function CommunityPosts() {
                                         </button>
                                     }
                                     {(loadingPostId === item._id&&likeLoading)  && (
-                                        <div className="absolute bottom-0 left-0 w-[100px]   h-[100px]  flex justify-center items-center" style={{zIndex:999}}>
+                                        <div className="absolute bottom-0 left-0 w-[150px]   h-[150px]  flex justify-center items-center" style={{zIndex:999}}>
                                             <Player
                                                 src="https://lottie.host/0bb4d081-4124-4a8c-987b-4a46982e91cc/Naj4kVQ2pk.json"
                                                 autoplay
                                                 loop
-                                                style={{ height: '100px', width: '100px' }}
+                                                style={{ height: '150px', width: '150px' }}
                                             ></Player>
                                         </div>
                                     )}
