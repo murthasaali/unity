@@ -48,6 +48,10 @@ function App() {
                <Route path='/login' element={<Login />} />
                <Route path='/reg' element={<Registration />} />
                <Route path='/' element={<Community />} />
+               <Route path='/search' element={<Community />} />
+               <Route path='/chat' element={<Community />} />
+               <Route path='/account' element={<Community />} />
+               <Route path='/notification' element={<Community />} />
                <Route path='/cart' element={<UserCart/>} />
                <Route path='/wishlist' element={<UserWishlist/>} />
 
