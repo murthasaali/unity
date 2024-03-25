@@ -3,12 +3,12 @@
 import axios from 'axios';
 import toast from 'react-hot-toast'
 // Function to fetch all posts
-export const getAllPosts = async (pagenum) => {
+export const getAllPosts = async (pagenum,limit) => {
     try {
       const token=localStorage.getItem("token")
       console.log(token)
     // Send a GET request to the appropriate endpoint to fetch all posts
-    const response = await axios.get(`https://ecommerce-api-shne.onrender.com/posts/getposts?page=${pagenum}`, {
+    const response = await axios.get(`https://ecommerce-api-shne.onrender.com/posts/getposts/${limit}/?page=${pagenum}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

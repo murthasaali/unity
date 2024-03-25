@@ -44,7 +44,7 @@ function CommunityPosts() {
     useEffect(() => {
         const fetchPosts = async () => {
             try {
-                const res = await getAllPosts(page);
+                const res = await getAllPosts(page,10);
                 console.log("data", res.latestPosts, page);
 
                 setPosts(prevPosts => [...prevPosts, ...res.latestPosts]); // Append new posts to the existing array
