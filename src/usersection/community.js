@@ -15,10 +15,12 @@ function Community() {
     const location = useLocation();
     console.log(location)
     const nav = useNavigate();
-
     useEffect(() => {
+        const token = localStorage.getItem("token"); // Define token here
+        token ? nav(location.pathname) : nav("/login");
         const fetchData = async () => {
             try {
+                
                 const profileData = await getUserProfile();
                 setUserProfile(profileData.user);
             } catch (error) {
@@ -26,7 +28,8 @@ function Community() {
             }
         };
         fetchData();
-    }, []);
+    }, [nav]);
+    
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -78,7 +81,7 @@ function Community() {
                 <button className='text-white font-thin text-3xl'><FiAlignCenter /></button>
             </div>
             <div className='w-full h-full flex justify-center p-0'>
-                <div className='md:h-[650px] h-[100%] bg-opacity-40 rounded-xl w-full md:w-[750px] overflow-y-scroll flex flex-col justify-start items-center md:p-4 p-1' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+                <div className='md:h-[650px] h-[100%] bg-opacity-40 rounded-xl  w-full md:w-[750px] overflow-y-scroll flex flex-col justify-start items-center md:p-4 p-1' style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                     {renderContent()}
                 </div>
             </div>

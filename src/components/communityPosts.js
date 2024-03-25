@@ -298,9 +298,6 @@ function CommunityPosts() {
                                             variants={container}
                                             initial="hidden"
                                             animate="visible" className='h-[400px]   bg-opacity-30 w-full overflow-y-scroll p-3 flex flex-col items-center'>
-                                          
-                                           
-
                                         </motion.div>
 
                                        

@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { FcGoogle } from "react-icons/fc";
 
 export function Registration() {
   const navigate = useNavigate();
@@ -43,7 +44,7 @@ export function Registration() {
           <h1 className="mt-10 text-center text-2xl font-thin leading-9 tracking-tight ">create a new account</h1>
         </div>
 
-        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+        <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm flex flex-col ">
         <form className="space-y-6 p-4 bg-transparent  rounded-lg" onSubmit={handleRegistration}>
           <div>
             <div>
@@ -61,23 +62,31 @@ export function Registration() {
           <div>
             <div className="flex items-center justify-between">
               <label className="block text-sm  leading-6 text-stone-100 font-thin">Password</label>
-              <div className="text-sm">
-                <button  className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</button>
-              </div>
+             
             </div>
+     
             <div className="mt-2">
               <input placeholder='enter a uniquw password...' htmlFor="password" name="password" type="password"  className="block placeholder:text-xs bg-transparent 0 w-full px-2  first-letter: border-0 py-1.5 text-stone-100 font-thin shadow-sm  " />
             </div>
           </div>
 
-          <div>
-            <button  type="submit" className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
+          <div className='flex justify-between'> 
+          <div className="text-sm flex">
+                <button  className="font-thin text-blue-600 hover:text-indigo-500">Forgot password?</button>
+              </div>
+          <button type="submit" className="flex  justify-center rounded-md bg-stone-950 bg-opacity-90 w-1/2 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
           </div>
+          <button className=" text-md font-thin text-gray-500 w-[80%] flex  justify-center items-center gap-1" >
+           <div>
+             register with google
+            </div>
+              <FcGoogle/>
+          </button>
         </form>
-
           <button className="mt-10 text-center text-sm text-gray-500" onClick={()=>navigate("/login")}>
             Already have an account?
           </button>
+
         </div>
       </div>
     </div>

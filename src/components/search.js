@@ -42,7 +42,7 @@ const Search = () => {
     return (
         <>
             <div className="  my-3  w-full  ">
-                    <input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Search...." className="w-full bg-opacity-25  bg-stone-950 px-3 py-2 "     style={{border: 'none'}}
+                    <input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Search...." className="w-full bg-opacity-25  bg-stone-950 px-3 py-2 outline-none "     style={{border: 'none'}}
  />
 
                

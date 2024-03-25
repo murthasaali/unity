@@ -6,6 +6,7 @@ import { setToken, setUserid } from '../redux/authSlice';
 import Loading from '../components/loading';
 import toast from 'react-hot-toast'
 import { Controls, Player } from '@lottiefiles/react-lottie-player';
+import { FcGoogle } from 'react-icons/fc';
 function Login() {
   const [isLoading, setIsLoading] = useState(false)
   const dispatch = useDispatch()
@@ -49,10 +50,10 @@ function Login() {
     );
      
       // Update the state with the new user
-      setIsLoading(false)
-  
-      navigate('/')
       // Redirect to the login page
+      setIsLoading(false)
+      navigate('/')
+  
     } catch (error) {
       console.error('Registration failed:', error.message);
       // Handle error, e.g., display an error message to the user
@@ -100,6 +101,12 @@ function Login() {
             <div>
               <button type="submit" className="flex  justify-center rounded-md bg-stone-950 bg-opacity-90 w-1/2 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Sign in</button>
             </div>
+            <button className=" text-md font-thin text-gray-500 w-[80%] flex  justify-center items-center gap-1" >
+           <div>
+             countinue with google
+            </div>
+              <FcGoogle/>
+          </button>
           </form>
 
           <button className="mt-10 text-center text-sm text-gray-500" onClick={toreg}>
