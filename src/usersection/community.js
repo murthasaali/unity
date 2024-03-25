@@ -13,6 +13,7 @@ function Community() {
     const [posts, setPosts] = useState([]);
     const [userProfile, setUserProfile] = useState({});
     const location = useLocation();
+    console.log(location)
     const nav = useNavigate();
 
     useEffect(() => {
