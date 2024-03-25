@@ -6,7 +6,6 @@ import Login from './usersection/login'
 import { Registration } from './usersection/registration'
 import Community from './usersection/community'
 import Bottombar from './components/bottombar'
-import AnimatedCursor from "react-animated-cursor"
 
 export const mycontext = createContext()
 function App() {
@@ -25,11 +24,9 @@ function App() {
         position="top-center"
         reverseOrder={false}
       />
-      <AnimatedCursor/>
 
                <Bottombar/>
           <Routes>
-            {/* <Route path='/' element={<LandingPge />} /> */}
          
                <Route path='/login' element={<Login />} />
                <Route path='/reg' element={<Registration />} />
