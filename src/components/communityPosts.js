@@ -366,19 +366,20 @@ function CommunityPosts() {
                                         <button><FaDotCircle /></button>
                                     </div>
                                 </div>
-                                <div className="h-[380px] md:h-[500px] relative rounded-lg md:w-[90%] w-[380px]" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
+                                <div className="h-[400px] md:h-[500px] relative rounded-lg md:w-[90%] w-full" style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }}>
                                     {(posts.length - 1 === index) &&
                                         <button onClick={() => setPage(page + 1)}
-                                            className="absolute bottom-10 right-1/2 text-stone-50 text-3xl text-opacity-40 p-1 z-50 flex animate-bounce duration-300 ease-in-out infinite"
+                                            className="absolute bottom-10 right-1/2 text-stone-50 text-3xl text-opacity-40 p-1 z-50 flex"
                                         >
-                                            <FaMouse />
+                                                 <span className="loading loading-spinner loading-lg text-white"></span>
+
 
 
 
                                         </button>
                                     }
                                     {(loadingPostId === item._id&&likeLoading)  && (
-                                        <div className="absolute top-0 left-0 w-[100px]   h-[100px]  flex justify-center items-center" style={{zIndex:999}}>
+                                        <div className="absolute bottom-0 left-0 w-[100px]   h-[100px]  flex justify-center items-center" style={{zIndex:999}}>
                                             <Player
                                                 src="https://lottie.host/0bb4d081-4124-4a8c-987b-4a46982e91cc/Naj4kVQ2pk.json"
                                                 autoplay
