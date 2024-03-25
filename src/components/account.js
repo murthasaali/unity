@@ -80,7 +80,7 @@ function Account() {
         userPosts.map((post) => (
           <div
             key={post._id}
-            className='bg-stone-50 relative rounded-lg bg-opacity-80 text-center text-3xl md:h-52 h-32'
+            className='bg-stone-50 relative  bg-opacity-80 text-center text-3xl md:h-52 h-32'
             style={{ backgroundImage: `url(${post.image})`, backgroundPosition: 'center', backgroundSize: 'cover' }}
           >
             {/* <button  className=' absolute flex justify-end p-0 right-0 top-2'>
@@ -144,7 +144,7 @@ function Account() {
               <div className='grid-container grid w-full grid-cols-3 md:gap-2 gap-1'>
                 {/* Render skeleton UI for posts */}
                 {Array.from({ length: 6 }).map((_, index) => (
-                  <div key={index} className='skeleton  relative rounded-lg  text-center text-3xl md:h-52 h-32'></div>
+                  <div key={index} className='skeleton    text-center text-3xl md:h-52 h-32'></div>
                 ))}
               </div>
             </div>

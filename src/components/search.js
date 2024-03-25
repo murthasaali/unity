@@ -43,7 +43,7 @@ const Search = () => {
         <>
             <div className="max-w-md mx-auto my-3  w-full">
                 <div className="relative">
-                    <input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Search" className="w-full bg-opacity-25  bg-stone-950 border border-gray-300 rounded-full px-4 py-2 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200" />
+                    <input type="text" onChange={(e) => setInput(e.target.value)} placeholder="Search...." className="w-full bg-opacity-25  bg-stone-950 px-3 py-2 focus:border-none" />
 
                 </div>
                 <div className="mt-4">
@@ -54,7 +54,7 @@ const Search = () => {
                 posts.length > 0 ? (
                     <div className="grid-container grid w-full grid-cols-3 md:gap-2 gap-1  ">
                         {posts.map((post, index) => (
-                            <div key={index} className=" rounded-lg  text-center  text-3xl md:h-52 h-32 " style={{
+                            <div key={index} className="   text-center  text-3xl md:h-52 h-32 " style={{
                                 backgroundImage: `url(${post.image})`, backgroundPosition: 'center',
                                 backgroundRepeat: 'no-repeat',
                                 backgroundSize: 'cover',
@@ -64,18 +64,18 @@ const Search = () => {
                     </div>
                 ) : (
                     <div className="grid-container grid w-full grid-cols-3 md:gap-2 gap-1  ">
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
-                        <div className=" rounded-lg  text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
+                        <div className="   text-center skeleton text-3xl md:h-52 h-32">  </div>
                     </div>
                 )
             ) : (

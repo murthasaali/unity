@@ -38,37 +38,35 @@ export function Registration() {
 
   return (
     <div className='  ' >
-      <div className="flex h-screen flex-col justify-center px-6 py-12 lg:px-8 " style={{
-      background: 'radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%)'
-    }}>
+      <div className="flex h-screen flex-col justify-center px-6 py-12 lg:px-8 bg-black " >
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <h1 className="mt-10 text-center text-2xl font-thin leading-9 tracking-tight text-gray-900">create a new account</h1>
+          <h1 className="mt-10 text-center text-2xl font-thin leading-9 tracking-tight ">create a new account</h1>
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6 p-4 bg-stone-100 bg-opacity-40 rounded-lg" onSubmit={handleRegistration}>
+        <form className="space-y-6 p-4 bg-transparent  rounded-lg" onSubmit={handleRegistration}>
           <div>
             <div>
-              <label className="block text-sm font-medium leading-6 text-gray-900">username</label>
+              <label className="block text-sm  leading-6 text-stone-100 font-thin">username</label>
               <div className="mt-2">
-                <input name="name" type="text"  className="block bg-stone-800  bg-opacity-40 w-full px-2 rounded-full border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              <input placeholder='enter a username' name="name" type="text"  className="block bg-transparent placeholder:text-xs  w-full px-2  border-none py-1.5 text-stone-100 font-thin shadow-sm  " />
               </div>
             </div>
-            <label className="block text-sm font-medium leading-6 text-gray-900">Email address</label>
+            <label className="block text-sm  leading-6 text-stone-100 font-thin">Email address</label>
             <div className="mt-2">
-              <input name="email" type="email"  className="block bg-stone-800  bg-opacity-40 w-full px-2 rounded-full first-letter: border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              <input placeholder='enter your email' name="email" type="email"  className="block placeholder:text-xs bg-transparent 0 w-full px-2  first-letter: border-0 py-1.5 text-stone-100 font-thin shadow-sm  " />
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between">
-              <label className="block text-sm font-medium leading-6 text-gray-900">Password</label>
+              <label className="block text-sm  leading-6 text-stone-100 font-thin">Password</label>
               <div className="text-sm">
                 <button  className="font-semibold text-indigo-600 hover:text-indigo-500">Forgot password?</button>
               </div>
             </div>
             <div className="mt-2">
-              <input htmlFor="password" name="password" type="password"  className="block bg-stone-800  bg-opacity-40 w-full px-2 rounded-full first-letter: border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" />
+              <input placeholder='enter a uniquw password...' htmlFor="password" name="password" type="password"  className="block placeholder:text-xs bg-transparent 0 w-full px-2  first-letter: border-0 py-1.5 text-stone-100 font-thin shadow-sm  " />
             </div>
           </div>
 

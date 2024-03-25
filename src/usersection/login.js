@@ -70,14 +70,11 @@ function Login() {
     navigate('/reg')
   }
   return (
-    <div className=' h-screen w-screen flex justify-center items-center bg-black' >
-      <div className="flex  flex-col justify-center w-full h-full    py-12 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-sm absolute">
-
-          <h1 className=" text-center text-2xl font-thin leading-9 tracking-tight ">Sign in to your account</h1>
-       
-        </div>
-
+    <div className='  ' >
+    <div className="flex h-screen flex-col justify-center px-6 py-12 lg:px-8 bg-black " >
+      <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+        <h1 className="mt-10 text-center text-2xl font-thin leading-9 tracking-tight ">create a new account</h1>
+      </div>
 
         {isLoading ?  <Loading />:<div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <form className="space-y-6 font-thin bg-stone-800 bg-opacity-40 p-4 rounded-lg justify-center items-center" onSubmit={handleLogin}>
