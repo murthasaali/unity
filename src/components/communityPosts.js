@@ -348,6 +348,8 @@ function CommunityPosts() {
                                 <div className='w-full h-auto flex justify-between items-center mt-2'>
                                     <div className='flex justify-center items-end gap-[10px] bg-transparent'>
                                         <div
+
+                                        onDoubleClick={()=>liking(item._id)}
                                             className='w-10 h-10 rounded-full bg-white relative'
                                             style={{
                                                 backgroundImage: `url(${item.postedBy.image})`,
