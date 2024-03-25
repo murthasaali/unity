@@ -290,7 +290,7 @@ function CommunityPosts() {
                                         <button><FaDotCircle /></button>
                                     </div>
                                 </div>
-                                <div className="h-[380px] md:h-[500px] relative rounded-lg md:w-[90%] w-[380px] skeleton" >
+                                <div className="h-[400px] md:h-[500px] relative rounded-lg md:w-[90%] w-full skeleton" >
                                    
                                 
                                     <div className='w-full relative h-full bg-gray-950 text-xl bg-opacity-30 rounded-lg'>
