@@ -10,7 +10,7 @@ const Search = () => {
     const searchData = async () => {
         console.log(input)
         try {
-            const response = await axios.get(`http://localhost:3001/auth/search/?query=${input}`); // Replace '/api/search' with your actual backend API endpoint for search
+            const response = await axios.get(`https://ecommerce-api-shne.onrender.com/auth/search/?query=${input}`); // Replace '/api/search' with your actual backend API endpoint for search
             console.log('Search results:', response.data);
             setAccounts(response.data)
             // Process the response data as needed
