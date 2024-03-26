@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import Login from './usersection/login';
 import { Registration } from './usersection/registration';
 import Community from './usersection/community';
+import UserDetails from './usersection/userDetails';
 
 export const mycontext = createContext();
 
@@ -28,6 +29,7 @@ function App() {
         <Route path='/reg' element={<Registration />} />
             <Route path='/' element={<Community />} />
             <Route path='/search' element={<Community />} />
+            <Route path='/user/:userId' element={<UserDetails />} />
             <Route path='/chat' element={<Community />} />
             <Route path='/account' element={<Community />} />
             <Route path='/notification' element={<Community />} />

@@ -202,7 +202,7 @@ function CommunityPosts() {
                                 <div className='w-auto mt-2 text-xl p-3 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96'>
                                     <button className='w-20 flex justify-center items-center flex-col hover:text-2xl  text-red-500 transition-all duration-300 py-3 hover:text-red-500'>
                                         <CiHeart />
-                                        <div className='text-xs text-stone-900'>liked by  </div>
+                                        <div className='text-xs text-stone-100'>liked by  </div>
                                     </button>
                                     <button className='w-20 flex justify-center items-center hover:text-2xl transition-all duration-300 py-3 ' >
                                         <MdChat />                                </button>

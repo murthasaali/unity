@@ -53,10 +53,17 @@ export const likeaPost = async (postId) => {
 };
 
 // Function to fetch user profile
-export const getUserProfile = async () => {
+export const getUserProfile = async (user) => {
   try {
     const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId");
+    let userId; // Declare userId variable outside of the condition
+    
+    if (!user) {
+      userId = localStorage.getItem("userId"); // Assign userId if user is provided
+    } else {
+      // If user is not provided, use the value of user directly
+      userId = user;
+    }
     console.log(token);
 
     // Send a GET request to the appropriate endpoint to fetch user profile
@@ -75,6 +82,7 @@ export const getUserProfile = async () => {
     throw error; // Re-throw the error to be caught by the caller
   }
 };
+
 
 export const deletePost = async (postId) => {
   try {
