@@ -1,37 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { FaArrowDown, FaArrowLeft, FaPlus } from "react-icons/fa6";
-import { deletePost, getUserProfile } from "../utils/communityServices";
-import SetProfileEditModal from "./setProfileEditModal";
-import { PiDotsThreeOutlineVerticalThin } from "react-icons/pi";
-import CreatePost from "./createPost";
-import { CiHeart } from "react-icons/ci";
+
+import React,{useState} from 'react';
+import { useQuery } from 'react-query';
+import { FaAnchor, FaArrowLeft, FaHeart, FaPlus } from 'react-icons/fa6';
+import { deletePost, getUserProfile } from '../utils/communityServices';
 import { useNavigate } from 'react-router-dom';
+import CreatePost from './createPost';
+import { CiHeart } from 'react-icons/ci';
+import SetProfileEditModal from './setProfileEditModal';
 
 function Account({ user, myAcount }) {
-
- 
-  const [userProfile, setUserProfile] = useState({});
   const [userPosts, setUserPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [createPost, setCreatePOst] = useState(false);
   const [loading, setLoading] = useState(true); // State to manage loading status
-  const nav=useNavigate()
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const profileData = await getUserProfile(user);
-        setUserProfile(profileData.user);
-        setUserPosts(profileData.user.posts);
+  const nav = useNavigate();
+  let userId; // Declare userId variable outside of the condition
+    
+    if (!user) {
+      userId = localStorage.getItem("userId"); // Assign userId if user is provided
+      console.log(userId)
+    } else {
+      // If user is not provided, use the value of user directly
+      userId = user;
+    }
+  const { data: userProfile, isLoading, isError } = useQuery(['userProfile', userId], () => getUserProfile(user));
 
-        setLoading(false); // Set loading to false when data is fetched
-      } catch (error) {
-        console.error("Error fetching user pr ofile:", error);
-        setLoading(false); // Set loading to false in case of error
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const renderUserProfile = () => (
     <div className="w-full h-full flex  flex-col gap-4 p-2">
@@ -110,7 +103,7 @@ function Account({ user, myAcount }) {
         {/* Conditionally render skeleton loading or user posts */}
         {
           // Render user posts when data is fetched
-          userPosts.map((post) => (
+          userProfile.posts.map((post) => (
             <div
               key={post._id}
               className="bg-stone-50 relative  bg-opacity-80 text-center text-3xl md:h-52 h-32"
@@ -131,7 +124,7 @@ function Account({ user, myAcount }) {
                   role="button"
                   className="absolute top-[1px] right-[3px]"
                 >
-                  <PiDotsThreeOutlineVerticalThin className="text-white text-md" />
+                  <FaAnchor className="text-white text-md" />
                 </div>
                 <ul
                   tabIndex={0}
@@ -148,15 +141,14 @@ function Account({ user, myAcount }) {
                   </button>
                 </ul>
               </div>
-              <div className="absolute left-2 right-[-10px] ">
-                <CiHeart />
-              </div>
+           
             </div>
           ))
         }
       </div>
     </div>
   );
+
 
   const renderSkeleton = () => {
     return (
@@ -202,9 +194,9 @@ function Account({ user, myAcount }) {
         </div>
       </div>
     );
-  };
+          }
 
-  return <>{!loading ? renderUserProfile() : renderSkeleton()}</>;
+  return <>{isLoading || isError ? renderSkeleton() : renderUserProfile()}</>;
 }
 
 export default Account;

@@ -75,7 +75,7 @@ export const getUserProfile = async (user) => {
 
     // Return the data from the response
     console.log(response.data);
-    return response.data;
+    return response.data.user;
   } catch (error) {
     // Handle any errors
     console.error('Error fetching user profile:', error);

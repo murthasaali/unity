@@ -6,7 +6,8 @@ import Login from './usersection/login';
 import { Registration } from './usersection/registration';
 import Community from './usersection/community';
 import UserDetails from './usersection/userDetails';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
+const queryClient = new QueryClient();
 export const mycontext = createContext();
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
 
   return (
     <>
+        <QueryClientProvider client={queryClient}>
+
       <Toaster
         position="top-center"
         reverseOrder={false}
@@ -35,6 +38,8 @@ function App() {
             <Route path='/notification' element={<Community />} />
           <Route path='*' element={<Navigate to="/logi" />} />
       </Routes>
+      </QueryClientProvider>
+
     </>
   );
 }
