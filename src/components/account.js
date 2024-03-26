@@ -1,12 +1,11 @@
-
-import React,{useState} from 'react';
-import { useQuery } from 'react-query';
-import { FaAnchor, FaArrowLeft, FaHeart, FaPlus } from 'react-icons/fa6';
-import { deletePost, getUserProfile } from '../utils/communityServices';
-import { useNavigate } from 'react-router-dom';
-import CreatePost from './createPost';
-import { CiHeart } from 'react-icons/ci';
-import SetProfileEditModal from './setProfileEditModal';
+import React, { useState } from "react";
+import { useQuery } from "react-query";
+import { FaAnchor, FaArrowLeft, FaHeart, FaPlus } from "react-icons/fa6";
+import { deletePost, getUserProfile } from "../utils/communityServices";
+import { useNavigate } from "react-router-dom";
+import CreatePost from "./createPost";
+import { CiHeart } from "react-icons/ci";
+import SetProfileEditModal from "./setProfileEditModal";
 
 function Account({ user, myAcount }) {
   const [userPosts, setUserPosts] = useState([]);
@@ -15,20 +14,23 @@ function Account({ user, myAcount }) {
   const [loading, setLoading] = useState(true); // State to manage loading status
   const nav = useNavigate();
   let userId; // Declare userId variable outside of the condition
-    
-    if (!user) {
-      userId = localStorage.getItem("userId"); // Assign userId if user is provided
-      console.log(userId)
-    } else {
-      // If user is not provided, use the value of user directly
-      userId = user;
-    }
-  const { data: userProfile, isLoading, isError } = useQuery(['userProfile', userId], () => getUserProfile(user));
 
+  if (!user) {
+    userId = localStorage.getItem("userId"); // Assign userId if user is provided
+    console.log(userId);
+  } else {
+    // If user is not provided, use the value of user directly
+    userId = user;
+  }
+  const {
+    data: userProfile,
+    isLoading,
+    isError,
+  } = useQuery(["userProfile", userId], () => getUserProfile(user));
 
   const renderUserProfile = () => (
     <div className="w-full h-full flex  flex-col gap-4 p-2">
-      <button className="text-whitem text-3xl" onClick={()=>nav("/search")}>
+      <button className="text-whitem text-3xl" onClick={() => nav("/search")}>
         <FaArrowLeft />
       </button>
       <div className="w-full flex justify-between items-center">
@@ -66,16 +68,16 @@ function Account({ user, myAcount }) {
       </div>
       <div className="w-full flex flex-col gap-1">
         <div className="px-3 text-white font-thin w-fit py-1 rounded-lg  bg-stone-800 bg-opacity-40">
-          {userProfile.username}
+          {userProfile?.username ? userProfile.username : "no name"}
         </div>
         <div className="px-3 text-blue-500 font-extralight text-xs w-fit py-1 rounded-lg  bg-stone-800 bg-opacity-40">
-          {userProfile.bio}
+          {userProfile?.bio}
         </div>
       </div>
       {myAcount ? (
         <div className="w-full flex justify-between text-xs  gap-1">
           <div className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40 font-thin">
-            <SetProfileEditModal setOpen={setOpen} open={open} />
+            <SetProfileEditModal setOpen={setOpen} open={open} userProfile={userProfile}/>
           </div>
           <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
             share profile
@@ -141,14 +143,12 @@ function Account({ user, myAcount }) {
                   </button>
                 </ul>
               </div>
-           
             </div>
           ))
         }
       </div>
     </div>
   );
-
 
   const renderSkeleton = () => {
     return (
@@ -194,7 +194,7 @@ function Account({ user, myAcount }) {
         </div>
       </div>
     );
-          }
+  };
 
   return <>{isLoading || isError ? renderSkeleton() : renderUserProfile()}</>;
 }

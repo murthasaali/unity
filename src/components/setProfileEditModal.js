@@ -10,32 +10,14 @@ import uploadToCloudinary from '../utils/cloudinaryUpload';
 import axios from 'axios'
 import toast from 'react-hot-toast'
 import { getUserProfile } from '../utils/communityServices';
-function SetProfileEditModal({ setOpen, open }) {
+function SetProfileEditModal({ setOpen, open,userProfile }) {
   const [selectedFile, setSelectedFile] = useState(null);
   const [imageUrl, setImageUrl] = useState('');
-  const [userProfile, setUserProfile] = useState({});
   const [userPosts, setUserPosts] = useState([]);
   const [loading, setLoading] = useState(true); // State to manage loading status
   const { register, handleSubmit } = useForm();
   console.log(selectedFile,userPosts,loading)
-  useEffect (() => {
-    const fetchData = async () => {
-      try {
-        const profileData = await getUserProfile();
-        setUserProfile(profileData.user);
-        setUserPosts(profileData.user.posts);
-       
-            setLoading(false); // Set loading to false when data is fetched
-setImageUrl(profileData.image)
-       
-      } catch (error) {
-        console.error('Error fetching user pr ofile:', error);
-        setLoading(false); // Set loading to false in case of error
-      }
-    };
 
-    fetchData();
-  }, []);
   const onCloseModal = () => setOpen(false);
   const token=localStorage.getItem("token")
   console.log(token)
@@ -92,8 +74,8 @@ const onSubmit=async(data)=>{
         </div>
       </div>
       <input  className='w-1/2 h-8 bg-transparent border rounded-full mt-4' type='file' onChange={handleFileChange}/> 
-      <input value={userProfile.username} {...register("username")} className='w-full  text-white text-xs font-thin px-2  h-8 bg-transparent  rounded-full mt-4' placeholder='username.....' />
-      <textarea value={userProfile.bio} {...register("bio")} className='w-full  text-white text-xs font-thin px-2  h-14 bg-transparent  rounded-md mt-4' placeholder='bio.....' />
+      <input value={userProfile?userProfile.username:"no name"} {...register("username")} className='w-full  text-white text-xs font-thin px-2  h-8 bg-transparent  rounded-full mt-4' placeholder='username.....' />
+      <textarea value={userProfile?userProfile.bio:"no bio"} {...register("bio")} className='w-full  text-white text-xs font-thin px-2  h-14 bg-transparent  rounded-md mt-4' placeholder='bio.....' />
 
        <div className='w-full flex justify-between gap-4'>
        <button className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md" onClick={()=>{

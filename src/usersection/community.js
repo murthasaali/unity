@@ -13,6 +13,7 @@ function Community() {
     const [posts, setPosts] = useState([]);
     const [userProfile, setUserProfile] = useState({});
     const location = useLocation();
+    const userId=localStorage.getItem("userId")
     console.log(location)
     const nav = useNavigate();
     useEffect(() => {
@@ -54,7 +55,7 @@ function Community() {
             case '/notification':
                 return <Notification />;
             case '/account':
-                return <Account />;
+                return <Account user={userId} myAcount={true} />;
             default:
                 return null;
         }

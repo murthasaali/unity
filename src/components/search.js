@@ -74,7 +74,7 @@ const Search = () => {
             <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
           </div>
         ) : (
-          <div className="grid-container grid w-full grid-cols-3 md:gap-2 gap-1">
+          <div className="grid-container grid w-full h-full bg-black overflow-y-scroll grid-cols-3 md:gap-2 gap-1">
             {posts.map((post, index) => (
               <div
                 key={index}
@@ -84,13 +84,14 @@ const Search = () => {
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
+                  
                 }}
               ></div>
             ))}
           </div>
         )
       ) : isAccountsLoading ? (
-        <div className="w-full grid-container grid grid-cols-1 gap-1">
+        <div className="w-full grid-container h-full overflow-y-scroll  grid grid-cols-1 gap-1">
           <div className="flex gap-4 items-center">
             <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
             <div className="flex flex-col gap-4">
@@ -130,7 +131,7 @@ const Search = () => {
       ) : (
         <div className="w-full h-[90%] flex flex-col">
           {/* Render account search results */}
-          <div className="w-full grid-container grid grid-cols-1 gap-1">
+          <div className="w-full grid-container h-full overflow-y-scroll  grid grid-cols-1 gap-1">
             {accounts.map((user) => (
               <button
                 key={user._id}
