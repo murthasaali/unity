@@ -139,7 +139,7 @@ export const getAllcomments = async (postId) => {
 export const commentPost = async (postId, text) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.post('http://localhost:300/posts/commentpost', {
+    const response = await axios.post('https://ecommerce-api-shne.onrender.com/posts/commentpost', {
       postId: postId,
       text: text
     },      {

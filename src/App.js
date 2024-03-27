@@ -7,6 +7,9 @@ import { Registration } from './usersection/registration';
 import Community from './usersection/community';
 import UserDetails from './usersection/userDetails';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import UserChatModal from './components/userChatModal';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 const queryClient = new QueryClient();
 export const mycontext = createContext();
 
@@ -19,27 +22,27 @@ function App() {
     return token && userId;
   };
 
+  const navigate = useNavigate(); // Initialize useNavigate hook
+
   return (
     <>
-        <QueryClientProvider client={queryClient}>
-
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
-      <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/reg' element={<Registration />} />
-            <Route path='/' element={<Community />} />
-            <Route path='/search' element={<Community />} />
-            <Route path='/user/:userId' element={<UserDetails />} />
-            <Route path='/chat' element={<Community />} />
-            <Route path='/account' element={<Community />} />
-            <Route path='/notification' element={<Community />} />
-          <Route path='*' element={<Navigate to="/logi" />} />
-      </Routes>
+      <QueryClientProvider client={queryClient}>
+        <Toaster
+          position="top-center"
+          reverseOrder={false}
+        />
+        <Routes>
+          <Route path='/login' element={<Login />} />
+          <Route path='/chat/:userId' element={<UserChatModal />} />
+          <Route path='/reg' element={<Registration />} />
+          <Route path='/' element={<Community />} />
+          <Route path='/search' element={<Community />} />
+          <Route path='/user/:userId' element={<UserDetails />} />
+          <Route path='/chat' element={<Community />} />
+          <Route path='/account' element={<Community />} />
+          <Route path='/notification' element={<Community />} />
+        </Routes>
       </QueryClientProvider>
-
     </>
   );
 }

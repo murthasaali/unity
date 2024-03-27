@@ -27,7 +27,9 @@ function Account({ user, myAcount }) {
     isLoading,
     isError,
   } = useQuery(["userProfile", userId], () => getUserProfile(user));
-
+  const handleRoute = (userId) => {
+    nav(`/chat/${userId}`);
+  };
   const renderUserProfile = () => (
     <div className="w-full h-full flex  flex-col gap-4 p-2">
       <button className="text-whitem text-3xl" onClick={() => nav("/search")}>
@@ -96,7 +98,7 @@ function Account({ user, myAcount }) {
           <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
             follow
           </button>
-          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
+          <button onClick={() => handleRoute(userId)} className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
             message{" "}
           </button>
         </div>

@@ -57,22 +57,11 @@ const Search = () => {
       {!input.length > 0 ? (
         isPostsLoading ? (
           <div className="grid-container grid w-full grid-cols-3 md:gap-2 gap-1">
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-            <div className="text-center text-3xl skeleton   md:h-52 h-32"></div>
-          </div>
+          {Array.from({ length: 15 }).map((_, index) => (
+            <div key={index} className="text-center text-3xl skeleton md:h-52 h-32"></div>
+          ))}
+        </div>
+        
         ) : (
           <div className="grid-container grid w-full h-full bg-black overflow-y-scroll grid-cols-3 md:gap-2 gap-1">
             {posts.map((post, index) => (
