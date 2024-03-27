@@ -9,6 +9,7 @@ import { MdKeyboardVoice } from "react-icons/md";
 import { FaImage } from "react-icons/fa6";
 import { FaArrowLeft, FaCamera } from "react-icons/fa6";
 import {useQuery} from 'react-query'
+import {useNavigate} from 'react-router-dom'
 const socket = io("https://ecommerce-api-shne.onrender.com");
 
 function UserChatModal() {
@@ -17,7 +18,7 @@ function UserChatModal() {
   const [message, setMessage] = useState("");
   const senderId = localStorage.getItem("userId");
   const { userId } = useParams();
-
+  const nav=useNavigate()
   const { data: item, isLoading, isError } = useQuery(
     ["item", userId],
     () => getUserProfile(userId)
@@ -84,7 +85,7 @@ function UserChatModal() {
       <div className="md:h-[650px] h-[100%] bg-opacity-40 bg-stone-800 w-full md:w-[750px] overflow-y-scroll flex flex-col justify-between items-center md:p-4 p-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         <div className=" top-0 left-0 right-0 h-16 gap-2 flex justify-between items-center  w-full m-3">
           <div className="w-auto flex justify-center items-center">
-            <button className="h-full w-16 flex justify-center items-center ">
+            <button onClick={()=>nav("/chat")} className="h-full px-4  flex justify-center items-center ">
               <FaArrowLeft />
             </button>
             <img src={item && item.image} className="w-12 h-12 rounded-full" alt={item && item.username} />
