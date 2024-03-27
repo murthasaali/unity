@@ -80,6 +80,8 @@ const Search = () => {
           </div>
         )
       ) : isAccountsLoading ? (
+        <div className="w-full h-[90%] flex flex-col">
+
         <div className="w-full grid-container h-full overflow-y-scroll  grid grid-cols-1 gap-1">
           <div className="flex gap-4 items-center">
             <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
@@ -117,10 +119,10 @@ const Search = () => {
             </div>
           </div>
         </div>
+        </div>
       ) : (
         <div className="w-full h-[90%] flex flex-col">
           {/* Render account search results */}
-          <div className="w-full grid-container h-full overflow-y-scroll  grid grid-cols-1 gap-1">
             {accounts.map((user) => (
               <button
                 key={user._id}
@@ -147,7 +149,6 @@ const Search = () => {
               </button>
             ))}
           </div>
-        </div>
       )}
     </>
   );

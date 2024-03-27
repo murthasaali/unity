@@ -104,9 +104,7 @@ function Account({ user, myAcount }) {
         </div>
       )}
       <div className="grid-container grid w-full grid-cols-3 md:gap-2 gap-1">
-        {/* Conditionally render skeleton loading or user posts */}
         {
-          // Render user posts when data is fetched
           userProfile.posts.map((post) => (
             <div
               key={post._id}
@@ -117,10 +115,6 @@ function Account({ user, myAcount }) {
                 backgroundSize: "cover",
               }}
             >
-              {/* <button  className=' absolute flex justify-end p-0 right-0 top-2'>
-
-       
-            </button> */}
 
               <div className="dropdown dropdown-end relative w-full h-full ">
                 <div

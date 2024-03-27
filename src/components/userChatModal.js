@@ -111,7 +111,7 @@ function UserChatModal() {
           ))}
         </div>
 
-        <div className=" bottom-0 left-3 right-0 bg-gray-600 bg-opacity-40 rounded-full h-12 w-full flex justify-between px-3 gap-0">
+        <div className=" bottom-0 left-3 right-0 bg-gray-600 bg-opacity-40 rounded-full h-16 w-full flex justify-between items-center px-3 gap-0">
           <div className="flex px-3 w-96">
             <button>
               <FaCamera className="text-xl" />
