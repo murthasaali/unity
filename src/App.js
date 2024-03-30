@@ -1,5 +1,5 @@
-import React,{useEffect} from 'react';
-import { Routes, Route,  } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { createContext } from 'react';
 import { Toaster } from "react-hot-toast";
 import Login from './usersection/login';
@@ -18,21 +18,27 @@ function App() {
   useEffect(() => {
     // Establish the Socket.IO connection
     const socket = io('https://unity-dev-xbcq.3.us-1.fl0.io'); // Replace with your server URL
-    // Optionally, you can handle events or emit data here
+    const userId = localStorage.getItem("userId");
+  
+    // Check if user is authenticated
+    if (userId) {
+      // Join the notification room using the user ID
 
+      socket.emit('notification', userId);
+      console.log(`User joined notification room for user ID ${userId}`);
+    }
+  
+    // Listen for 'notification' event
+    socket.on('notification', (data) => {
+      console.log('Notification received:', data);
+    });
+  
     // Clean up the socket connection on component unmount
     return () => {
       socket.disconnect();
     };
   }, []);
-
-  const token = localStorage.getItem("token");
-  const userId = localStorage.getItem("userId");
-
-  // Define a function to check if user is authenticated
-  const isAuthenticated = () => {
-    return token && userId;
-  };
+  
 
   const navigate = useNavigate(); // Initialize useNavigate hook
 

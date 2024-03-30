@@ -1,8 +1,11 @@
 import axios from 'axios';
 import toast from 'react-hot-toast'
 
+import { io } from 'socket.io-client'; // Import io from socket.io-client
+
 export const getAllUnfollowedUsers = async (userId) => {
   try {
+
     const token = localStorage.getItem("token")
     
 
@@ -23,6 +26,12 @@ export const getAllUnfollowedUsers = async (userId) => {
 export const followUser = async (userIdToFollow,name) => {
   try {
     const token = localStorage.getItem("token");
+    const socket = io('https://unity-dev-xbcq.3.us-1.fl0.io',{
+      cors: {
+        origin: "https://unity-dev-xbcq.3.us-1.fl0.io",
+        methods: ["GET", "POST"]
+      }
+    }); // Replace with your server URL
 
     const response = await axios.post(`https://unity-dev-xbcq.3.us-1.fl0.io/follows/follow/${userIdToFollow}`, null, {
       headers: {
@@ -30,8 +39,11 @@ export const followUser = async (userIdToFollow,name) => {
       }
     });
     
+    const userId = localStorage.getItem("userId");
 
     console.log(response.data);
+    socket.emit('notification',  userId );
+
     toast(`you started following ${name}`,
     {
       icon: '👏',
@@ -60,7 +72,7 @@ export const getAllFollowers = async (userId) => {
   try {
     const token = localStorage.getItem("token");
 
-    const response = await axios.get(`http://localhost:3001/follows/getAllFollowers/${userId}`, {
+    const response = await axios.get(`https://unity-dev-xbcq.3.us-1.fl0.io/follows/getAllFollowers/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
