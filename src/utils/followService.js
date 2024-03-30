@@ -55,3 +55,21 @@ export const followUser = async (userIdToFollow,name) => {
   }
 };
 
+
+export const getAllFollowers = async (userId) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    const response = await axios.get(`http://localhost:3001/follows/getAllFollowers/${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    console.log("followers",response.data);
+    return response.data.reverse(); // Reverse the order if needed
+  } catch (error) {
+    console.error('Error fetching followers:', error);
+    throw error; // Re-throw the error to be caught by the caller
+  }
+};

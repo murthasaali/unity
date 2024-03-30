@@ -76,7 +76,7 @@ export const removeFromCart = async (productId) => {
     if (!token) {
       console.error('Token is not available');
       return;
-    }
+    } 
 
     const response = await axios.delete(
       `https://unity-dev-xbcq.3.us-1.fl0.io/cart/remove-from-cart/${productId}?userId=${userId}`,

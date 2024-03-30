@@ -31,10 +31,10 @@ function SetProfileEditModal({ setOpen, open,userProfile }) {
     
   const uploadImage = async (file) => {
     try {
-      const imageUrl = await uploadToCloudinary(file);
-      console.log(imageUrl)
-      setImageUrl(imageUrl);
-      console.log(imageUrl)
+      const result = await uploadToCloudinary(file);
+      console.log("result",result)
+      setImageUrl(result);
+      console.log(result)
     } catch (error) {
       alert("Error uploading image:")
     }

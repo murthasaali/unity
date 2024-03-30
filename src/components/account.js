@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useQuery } from "react-query";
 import { FaAnchor, FaArrowLeft, FaHeart, FaPlus } from "react-icons/fa6";
 import { deletePost, getUserProfile } from "../utils/communityServices";
@@ -6,15 +6,20 @@ import { useNavigate } from "react-router-dom";
 import CreatePost from "./createPost";
 import { CiHeart } from "react-icons/ci";
 import SetProfileEditModal from "./setProfileEditModal";
+import Follow from "./Modals/follow";
+import { getAllFollowers } from "../utils/followService";
+import UpdateProfile from "./Modals/updateProfile";
+import CreatePostModal from "./Modals/createPost";
 
 function Account({ user, myAcount }) {
   const [userPosts, setUserPosts] = useState([]);
   const [open, setOpen] = useState(false);
   const [createPost, setCreatePOst] = useState(false);
+  const [isFollowed, setIsFollowed] = useState(false); // State to manage follow status
+  const [followerList,setFollowerList]=useState(false)
   const [loading, setLoading] = useState(true); // State to manage loading status
   const nav = useNavigate();
-  let userId; // Declare userId variable outside of the condition
-
+  let userId
   if (!user) {
     userId = localStorage.getItem("userId"); // Assign userId if user is provided
     console.log(userId);
@@ -27,6 +32,12 @@ function Account({ user, myAcount }) {
     isLoading,
     isError,
   } = useQuery(["userProfile", userId], () => getUserProfile(user));
+
+  useEffect(() => {
+    if (userProfile && userProfile.followers) {
+      setIsFollowed(userProfile.followers.includes(userId));
+    }
+  }, [userProfile]);
   const handleRoute = (userId) => {
     nav(`/chat/${userId}`);
   };
@@ -51,21 +62,27 @@ function Account({ user, myAcount }) {
           <div>{userProfile.posts ? userProfile.posts.length : "0"}</div>
           <div>posts</div>
         </div>
-        <div className="  flex flex-col justify-start items-center ">
-          <div>
-            {userProfile.followersCount
-              ? userProfile.followersCount.length
-              : "0"}
-          </div>
-          <div>followers</div>
-        </div>
+        <div className="flex flex-col justify-start items-center">
+  <div>
+    {followerList ? (
+      userProfile.followersCount ? userProfile.followersCount.length : "0"
+    ) : (
+<Follow 
+  data={userProfile.followersCount ? userProfile.followersCount.length : 0}  
+  fun={() => getAllFollowers(userId)}
+/>
+    )}
+  </div>
+  <div onClick={() => setFollowerList(true)}>followers</div>
+</div>
+
         <div className="  flex flex-col justify-start items-center ">
           <div>
             {userProfile.followingCount
               ? userProfile.followingCount.length
               : "0"}
           </div>
-          <div>following</div>
+          <div >following</div>
         </div>
       </div>
       <div className="w-full flex flex-col gap-1">
@@ -79,14 +96,15 @@ function Account({ user, myAcount }) {
       {myAcount ? (
         <div className="w-full flex justify-between text-xs  gap-1">
           <div className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40 font-thin">
-            <SetProfileEditModal setOpen={setOpen} open={open} userProfile={userProfile}/>
-          </div>
+{userProfile&&
+  <UpdateProfile  userProfile={userProfile}/>
+}          </div>
           <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
             share profile
           </button>
           <div className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40    font-thin">
             {" "}
-            <CreatePost setOpen={setCreatePOst} open={createPost} />
+            <CreatePostModal  />
           </div>
         </div>
       ) : (
@@ -95,9 +113,16 @@ function Account({ user, myAcount }) {
             share profile
           </button>
 
-          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
-            follow
+           {isFollowed?
+          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-blue-600  bg-opacity-40     font-thin">
+           following
           </button>
+          :
+          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-blue-600  bg-opacity-40     font-thin">
+            followback
+            </button>
+          
+          } 
           <button onClick={() => handleRoute(userId)} className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
             message{" "}
           </button>
@@ -142,6 +167,7 @@ function Account({ user, myAcount }) {
             </div>
           ))
         }
+       
       </div>
     </div>
   );
@@ -188,6 +214,7 @@ function Account({ user, myAcount }) {
             ></div>
           ))}
         </div>
+        
       </div>
     );
   };
