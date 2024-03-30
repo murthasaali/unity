@@ -12,7 +12,7 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 // Initialize socket connection
-const socket = io("http://localhost:3001");
+const socket = io("https://ecommerce-api-shne.onrender.com");
 
 function UserChatModal() {
   const nav = useNavigate();
