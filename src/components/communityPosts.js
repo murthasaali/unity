@@ -101,7 +101,7 @@ function CommunityPosts() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "https://ecommerce-api-shne.onrender.com/posts/commentpost",
+        "https://unity-dev-xbcq.3.us-1.fl0.io/posts/commentpost",
         {
           postId: postId,
           text: data.comment,

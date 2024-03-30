@@ -18,7 +18,7 @@ const Search = () => {
     refetch: refetchAccounts,
   } = useQuery(["accounts", input], async () => {
     const response = await axios.get(
-      `https://ecommerce-api-shne.onrender.com/auth/search/?query=${input}`
+      `https://unity-dev-xbcq.3.us-1.fl0.io/auth/search/?query=${input}`
     );
     return response.data;
   });

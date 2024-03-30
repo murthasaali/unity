@@ -10,7 +10,7 @@ function Chat() {
 
   const { data, isLoading, isError } = useQuery('chattedUsers', async () => {
     const token = localStorage.getItem('token');
-    const response = await axios.get('https://ecommerce-api-shne.onrender.com/messages/getchattedusers', {
+    const response = await axios.get('https://unity-dev-xbcq.3.us-1.fl0.io/messages/getchattedusers', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

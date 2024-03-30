@@ -43,7 +43,7 @@ const onSubmit=async(data)=>{
   try {
     console.log(data)
     const userId=localStorage.getItem("userId")
-  const response = await axios.post(`https://ecommerce-api-shne.onrender.com/auth/attachUserPhoto/${userId}`, {
+  const response = await axios.post(`https://unity-dev-xbcq.3.us-1.fl0.io/auth/attachUserPhoto/${userId}`, {
     image: imageUrl, // Assuming imageUrl is the state containing the URL of the uploaded image
     username: data.username,
     bio: data.bio
