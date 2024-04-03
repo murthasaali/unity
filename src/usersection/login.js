@@ -5,7 +5,6 @@ import axios from 'axios';
 import { setToken, setUserid } from '../redux/authSlice';
 import Loading from '../components/loading';
 import toast from 'react-hot-toast'
-import { Controls, Player } from '@lottiefiles/react-lottie-player';
 import { FcGoogle } from 'react-icons/fc';
 function Login() {
   const [isLoading, setIsLoading] = useState(false)
