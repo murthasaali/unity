@@ -33,7 +33,7 @@ export const followUser = async (userIdToFollow,name) => {
       }
     }); // Replace with your server URL
 
-    const response = await axios.post(`https://unity-dev-xbcq.3.us-1.fl0.io/follows/follow/${userIdToFollow}`, null, {
+    const response = await axios.post(`http://localhost:3001/follows/follow/${userIdToFollow}`, null, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -81,7 +81,7 @@ export const getAllFollowers = async (userId) => {
   try {
     const token = localStorage.getItem("token");
 
-    const response = await axios.get(`https://unity-dev-xbcq.3.us-1.fl0.io/follows/getAllFollowers/${userId}`, {
+    const response = await axios.get(`http://localhost:3001/follows/getAllFollowers/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
