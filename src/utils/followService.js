@@ -9,7 +9,7 @@ export const getAllUnfollowedUsers = async (userId) => {
     const token = localStorage.getItem("token")
     
 
-    const response = await axios.get(`https://unity-dev-xbcq.3.us-1.fl0.io/follows/unfollowingusers/${userId}`, {
+    const response = await axios.get(`http://localhost:3001/follows/unfollowingusers/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -25,13 +25,23 @@ export const getAllUnfollowedUsers = async (userId) => {
 
 export const followUser = async (userIdToFollow,name) => {
   try {
+    const userId = localStorage.getItem("userId");
+    const socket = io('http://localhost:3001'); // Replace with your server URL
+    if (userId) {
+      // Join the notification room using the user ID
+      console.log(userId)
+      socket.emit('notification', userId);
+      console.log(`User joined notification room for user ID ${userId}`);
+    }
+    socket.on('notification', (data) => {
+      console.log('Notification received from backend:', data.message);
+      // Handle the notification data as needed
+    });
+    // console.log(userIdToFollow)
+  
+ 
     const token = localStorage.getItem("token");
-    const socket = io('https://unity-dev-xbcq.3.us-1.fl0.io',{
-      cors: {
-        origin: "https://unity-dev-xbcq.3.us-1.fl0.io",
-        methods: ["GET", "POST"]
-      }
-    }); // Replace with your server URL
+  
 
     const response = await axios.post(`http://localhost:3001/follows/follow/${userIdToFollow}`, null, {
       headers: {
@@ -39,7 +49,6 @@ export const followUser = async (userIdToFollow,name) => {
       }
     });
     
-    const userId = localStorage.getItem("userId");
 
     console.log(response.data);
     socket.emit('notification',  userId );
@@ -80,6 +89,8 @@ export const followUser = async (userIdToFollow,name) => {
 export const getAllFollowers = async (userId) => {
   try {
     const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId");
+
 
     const response = await axios.get(`http://localhost:3001/follows/getAllFollowers/${userId}`, {
       headers: {

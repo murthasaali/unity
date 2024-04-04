@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { setToken, setUserid } from '../redux/authSlice';
+import { setToken, setUser, setUserid } from '../redux/authSlice';
 import Loading from '../components/loading';
 import toast from 'react-hot-toast'
 import { FcGoogle } from 'react-icons/fc';
@@ -25,10 +25,10 @@ function Login() {
       });
 
       // Assuming your server responds with the newly created user data
-      console.log(response.data.id)
-      const message = response.data.message
+      console.log(response.data)
       dispatch(setToken(response.data.data))
       dispatch(setUserid(response.data.id))
+      dispatch(setUser(response.data))
 
 
       // alert(message)

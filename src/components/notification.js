@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Unfollowlist from './unfollowlist'; // Make sure to import the Unfollowlist component correctly
 
 function Notification() {
+
+    
     return (
         <div className='w-full h-full '>
             <Unfollowlist />

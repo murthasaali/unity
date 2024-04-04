@@ -10,6 +10,8 @@ import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import axios from "axios";
+import { io } from "socket.io-client";
+
 import { IoSend } from "react-icons/io5";
 import Unfollowlist from "./unfollowlist";
 import { Player } from "@lottiefiles/react-lottie-player";
@@ -40,7 +42,10 @@ function CommunityPosts() {
   const [selectedPostId, setSelectedPostId] = useState(null); // State to track which post's chat modal is open
   const [likeLoading, setLikeLoading] = useState(false);
   const [comments, setComments] = useState({}); // Define 'comments' state variable
-
+  const [soket,setSocket]=useState(null)
+  useEffect(() => {
+    setSocket(io("http://localhost:3001"));
+  }, []);
   const toggleChatModal = (postId) => {
     // Define 'toggleChatModal' function
     setCommentOpen(!commentOpen); // Toggle comment section visibility
@@ -119,11 +124,17 @@ function CommunityPosts() {
       throw error; // Throw error if request fails
     }
   };
+  useEffect(() => {
+    const user=localStorage.getItem("user")
+    soket?.emit("newUser",user );
+  }, [soket]);
 
-  const liking = async (postId) => {
+  const liking = async (post) => {
     try {
-      setLoadingPostId(postId);
-      const res = await likeaPost(postId);
+      setLoadingPostId(post._id);
+      const userId=localStorage.getItem("userId")
+      const res = await likeaPost(post._id);
+      
 
       if (res.message === "Post liked successfully") {
         setLikeLoading(true);
@@ -131,6 +142,11 @@ function CommunityPosts() {
           setLikeLoading(false);
           setLoadingPostId(null);
         }, 3000);
+        soket.emit("sendNotification", {
+          senderName: userId,
+          receiverName: post.postedBy.username,
+          
+        });
         toast.success("You liked this post");
       } else {
         toast.error("You disliked this post");
@@ -318,7 +334,7 @@ function CommunityPosts() {
                   <div className="w-auto mt-2 text-xl p-3 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96">
                     <button
                       className="w-20 flex justify-center items-center flex-col hover:text-2xl  text-red-500 transition-all duration-300 py-3 hover:text-red-500"
-                      onClick={() => liking(item._id)}
+                      onClick={() => liking(item)}
                     >
                       <CiHeart />
                       <div className="text-xs text-stone-100">
@@ -489,7 +505,7 @@ function CommunityPosts() {
                       {" "}
                       <button
                         className="text-2xl hover:text-red-600"
-                        onClick={() => liking(item._id)}
+                        onClick={() => liking(item)}
                       >
                         {" "}
                         <FaHeart />{" "}

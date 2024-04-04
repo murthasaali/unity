@@ -10,8 +10,9 @@ export function Registration() {
     e.preventDefault();
 
     const email = e.target.email.value;
+    const name = e.target.name.value;
     const password = e.target.password.value;
-    console.log(email,password)
+    console.log(email,password,name)
 
     try {
       // Make a POST request to your server to handle registration
