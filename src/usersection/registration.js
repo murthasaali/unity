@@ -2,10 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { FcGoogle } from "react-icons/fc";
+import { setUser, setUsername } from '../redux/authSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export function Registration() {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch()
   const handleRegistration = async (e) => {
     e.preventDefault();
 
@@ -19,12 +21,14 @@ export function Registration() {
       const response = await axios.post('https://unity-dev-xbcq.3.us-1.fl0.io/auth/register', {
         email:email,
         password:password,
+        name:name
       });
 
       // Assuming your server responds with the newly created user data
       console.log(response)
       const message=response.data.message
       
+      // dispatch(setUsername(response.data.user.username))
       alert(message)
       navigate("/login")
       if(response.status===400){

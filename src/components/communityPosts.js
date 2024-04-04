@@ -22,6 +22,7 @@ import {
 } from "../utils/communityServices";
 import UserChatModal from "./userChatModal";
 import { FaHeart } from "react-icons/fa6";
+import { toasting } from "../constants/toast/customToast";
 const items = {
   hidden: { y: 20, opacity: 0 },
   visible: {
@@ -42,10 +43,11 @@ function CommunityPosts() {
   const [selectedPostId, setSelectedPostId] = useState(null); // State to track which post's chat modal is open
   const [likeLoading, setLikeLoading] = useState(false);
   const [comments, setComments] = useState({}); // Define 'comments' state variable
-  const [soket,setSocket]=useState(null)
+  const [socket,setSocket]=useState(null)
   useEffect(() => {
-    setSocket(io("http://localhost:3001"));
+    setSocket(io("https://unity-dev-xbcq.3.us-1.fl0.io"));
   }, []);
+  
   const toggleChatModal = (postId) => {
     // Define 'toggleChatModal' function
     setCommentOpen(!commentOpen); // Toggle comment section visibility
@@ -125,27 +127,40 @@ function CommunityPosts() {
     }
   };
   useEffect(() => {
-    const user=localStorage.getItem("user")
-    soket?.emit("newUser",user );
-  }, [soket]);
-
+    if (socket) {
+      const user = localStorage.getItem("username");
+      socket.emit("newUser", user);
+      socket.on("getNotification", ({ senderName,type }) => {
+        console.log(`Received notification from ${senderName}`);
+        if(type==="like")
+        toasting(`${senderName} liked your post`,"💝")
+      else
+      toasting(`${senderName} following you `,"🖤")
+      });
+    }
+  }, [socket]);
+  
+  
+  
   const liking = async (post) => {
     try {
       setLoadingPostId(post._id);
       const userId=localStorage.getItem("userId")
+      console.log(post.postedBy)
       const res = await likeaPost(post._id);
       
-
+      
       if (res.message === "Post liked successfully") {
         setLikeLoading(true);
         setTimeout(() => {
           setLikeLoading(false);
           setLoadingPostId(null);
         }, 3000);
-        soket.emit("sendNotification", {
-          senderName: userId,
+        const username=localStorage.getItem("username")
+        socket.emit("sendNotification", {
+          senderName: username,
           receiverName: post.postedBy.username,
-          
+          type:"like"
         });
         toast.success("You liked this post");
       } else {

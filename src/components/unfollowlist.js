@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { useQuery } from 'react-query';
 import { followUser, getAllUnfollowedUsers } from '../utils/followService';
 import { useNavigate } from "react-router-dom";
 import hero from '../assets/profileIcon.jpg';
 import { FaPlus } from 'react-icons/fa6';
+import { io } from "socket.io-client";
+import { toasting } from '../constants/toast/customToast';
 
 function isUserNew(createdAt) {
   const userCreateDate = new Date(createdAt);
@@ -13,15 +15,39 @@ function isUserNew(createdAt) {
 }
 
 function Unfollowlist() {
+  const [socket,setSocket]=useState(null)
+
   const nav = useNavigate();
+  useEffect(() => {
+    setSocket(io("https://unity-dev-xbcq.3.us-1.fl0.io"));
+  }, []);
+  useEffect(() => {
+    if (socket) {
+      const user = localStorage.getItem("username");
+      socket.emit("newUser", user);
+      socket.on("getNotification", ({ senderName,type }) => {
+        console.log(`Received notification from ${senderName}`);
+        if(type==="follow")
+        toasting(`${senderName} following you `,"🖤")
+      else
+      toasting(`${senderName} liked your post`,"💝")
+      });
+    }
+  }, [socket]);
 
   const { data: unfollowedUsers = [], isLoading, isError, refetch } = useQuery('unfollowedUsers', getAllUnfollowedUsers);
-
+const username=localStorage.getItem("username")
   const follow = async (userId, name) => {
     try {
       await followUser(userId, name);
+      socket.emit("sendNotification", {
+        senderName: username,
+        receiverName: name,
+        type:"follow",
+        
+      });
       refetch(); // After following, refetch the data to update the list
-    } catch (error) {
+    } catch (error) { 
       console.error('Error following user:', error);
     }
   }

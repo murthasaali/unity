@@ -2,7 +2,7 @@ import toast from 'react-hot-toast';
 
 // Exporting a named function
 export const toasting = (name,icon) => {
-  toast(`You started following ${name}`, {
+  toast(`${name}`, {
     icon: icon,
     style: {
       borderRadius: '5px',

@@ -25,10 +25,11 @@ function Login() {
       });
 
       // Assuming your server responds with the newly created user data
-      console.log(response.data)
+      console.log(response.data.user)
       dispatch(setToken(response.data.data))
       dispatch(setUserid(response.data.id))
-      dispatch(setUser(response.data))
+      dispatch(setUser(response.data.user))
+      
 
 
       // alert(message)
