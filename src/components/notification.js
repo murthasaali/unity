@@ -4,9 +4,30 @@ import axios from 'axios';
 import { data } from 'autoprefixer';
 function formatDate(timestamp) {
   const date = new Date(timestamp);
-  const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
-  return date.toLocaleDateString('en-US', options);
+  const currentDate = new Date();
+  const differenceInSeconds = Math.floor((currentDate - date) / 1000);
+
+  // Calculate time difference in minutes and hours
+  const minutes = Math.floor(differenceInSeconds / 60);
+  const hours = Math.floor(minutes / 60);
+
+  // Format timestamp based on the time difference
+  if (hours >= 24) {
+    // If more than 24 hours, display date and time
+    const options = { month: 'short', day: 'numeric', hour: 'numeric', minute: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  } else if (hours >= 1) {
+    // If more than 1 hour, display hours ago
+    return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+  } else if (minutes >= 1) {
+    // If more than 1 minute, display minutes ago
+    return `${minutes} minute${minutes > 1 ? 's' : ''} ago`;
+  } else {
+    // If less than 1 minute, display just now
+    return 'Just now';
+  }
 }
+
 
 const fetchNotifications = async () => {
   try {
