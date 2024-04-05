@@ -103,7 +103,7 @@ fetchChatHistory(userId)
   // Return JSX for rendering the chat modal
   return (
     <div className="w-full h-screen bg-black flex justify-center items-center">
-      <div className="md:h-[650px] h-[100%] bg-opacity-40 bg-stone-800 w-full md:w-[750px] overflow-y-scroll flex flex-col justify-between items-center md:p-4 p-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+      <div className="md:h-[650px] h-[90%] bg-opacity-40 bg-stone-800 w-full md:w-[750px] overflow-y-scroll flex flex-col justify-between items-center md:p-4 p-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         {/* Header section */}
         <div className=" top-0 left-0 right-0 h-16 gap-2 flex justify-between items-center  w-full m-3">
           <div className="w-auto flex justify-center items-center">
@@ -136,7 +136,7 @@ fetchChatHistory(userId)
         </div>
 
         {/* Message input section */}
-        <div className=" bottom-0 left-3 right-0 bg-gray-600 bg-opacity-40 rounded-full h-12 w-full flex justify-between px-3 gap-0">
+        <div className=" bottom-0 left-3 right-0 bg-gray-600 bg-opacity-40 rounded-full h-16 w-full flex justify-between px-3 gap-0">
           <div className="flex px-3 w-96">
             <button>
               <FaCamera className="text-xl" />

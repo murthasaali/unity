@@ -145,9 +145,10 @@ function CommunityPosts() {
   const liking = async (post) => {
     try {
       setLoadingPostId(post._id);
+      const username=localStorage.getItem("username")
       const userId=localStorage.getItem("userId")
       console.log(post.postedBy)
-      const res = await likeaPost(post._id);
+      const res = await likeaPost(post._id,username);
       
       
       if (res.message === "Post liked successfully") {
@@ -341,12 +342,12 @@ function CommunityPosts() {
         posts.map((item, index) => (
           <>
             <div
-              className={`relative  ${index % 9 === 0 && "mb-24"}`}
+              className={`relative  `}
               key={index}
             >
               <div className="w-full backdrop-cyan-600 h-fit p-1 flex flex-col gap-2">
-                <div className="w-full md:h-[450px] h-auto bg-opacity-50 md:gap-4 gap-1  backdrop-blur-sm relative rounded-3xl flex flex-col justify-center px-4 items-center md:items-start">
-                  <div className="w-auto mt-2 text-xl p-3 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96">
+                <div className="w-full md:h-[450px] h-auto bg-opacity-50 md:gap-4 gap-1  backdrop-blur-sm relative rounded-3xl flex flex-col justify-center md:px-4 p-0 items-center md:items-start">
+                  <div className="w-auto mt-2 text-xl md:p-3 p-0 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96">
                     <button
                       className="w-20 flex justify-center items-center flex-col hover:text-2xl  text-red-500 transition-all duration-300 py-3 hover:text-red-500"
                       onClick={() => liking(item)}
@@ -408,7 +409,7 @@ function CommunityPosts() {
                     </div>
                   </div>
                   <div
-                    className="h-[400px] md:h-[500px] relative rounded-lg md:w-[90%] w-full"
+                    className="h-[400px] md:h-[500px] relative  md:w-full w-full"
                     style={{
                       backgroundImage: `url(${item.image})`,
                       backgroundSize: "cover",

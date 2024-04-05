@@ -25,7 +25,7 @@ export const getAllPosts = async (pagenum,limit) => {
 
 
 
-export const likeaPost = async (postId) => {
+export const likeaPost = async (postId,username) => {
   try {
     const token = localStorage.getItem("token");
     console.log(token);
@@ -33,7 +33,7 @@ export const likeaPost = async (postId) => {
     // Send a POST request to the appropriate endpoint to like the post
     const response = await axios.post(
       `https://unity-dev-xggp.3.us-1.fl0.io/posts/likepost`,
-      { postId }, // Sending postId in the request body
+      { postId ,username}, // Sending postId in the request body
       {
         headers: {
           Authorization: `Bearer ${token}`
