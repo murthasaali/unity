@@ -6,7 +6,7 @@ import { data } from 'autoprefixer';
 const fetchNotifications = async () => {
   try {
     const token =localStorage.getItem("token")
-    const response = await axios.get(`https://unity-dev-xbcq.3.us-1.fl0.io/notification/getnotification`, {
+    const response = await axios.get(`https://unity-dev-xggp.3.us-1.fl0.io/notification/getnotification`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
