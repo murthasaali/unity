@@ -68,7 +68,7 @@ function Notification() {
             <img className='h-10 w-10 rounded-full   ' src={notification.userId.image?notification.userId.image:"dcafsdfsdf"}/>
             <p className='font-thin text-md flex flex-col'>
               <div>{notification.text}</div>
-              <div className='text-xs text-stone-300'> {formatDate(notification.timestamp)}</div>
+              <div className='text-xs text-stone-300'> {formatDate(notification.timestamp)} ago</div>
 
             </p>
         </div> // Adjust this according to your notification structure
