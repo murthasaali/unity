@@ -4,7 +4,7 @@ import axios from 'axios';
 import { data } from 'autoprefixer';
 function formatDate(timestamp) {
   const date = new Date(timestamp);
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+  const options = { weekday: 'long', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' };
   return date.toLocaleDateString('en-US', options);
 }
 
