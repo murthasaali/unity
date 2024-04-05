@@ -63,7 +63,7 @@ function Notification() {
     <div className="w-full h-full flex flex-col  justify-start items-center p-3">
       <div className='gap-2 flex  flex-col md:w-[80%]  w-full '>
 
-      {data.map(notification => (
+      {data.reverse().map(notification => (
         <div className='text-white flex gap-2' key={notification.id}>
             <img className='h-10 w-10 rounded-full   ' src={notification.userId.image?notification.userId.image:"dcafsdfsdf"}/>
             <p className='font-thin text-md flex flex-col'>
