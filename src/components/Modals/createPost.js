@@ -35,7 +35,7 @@ function CreatePostModal() {
       console.log(data);
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        'https://unity-dev-xggp.3.us-1.fl0.io/posts/createpost',
+        'https://unity-backend-p0uh.onrender.com/posts/createpost',
         {
           image: imageUrl,
           caption: data.caption,

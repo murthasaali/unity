@@ -12,7 +12,7 @@ import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
 
 // Initialize socket connection
-const socket = io("https://unity-dev-xggp.3.us-1.fl0.io");
+const socket = io("https://unity-backend-p0uh.onrender.com");
 
 function UserChatModal() {
   const nav = useNavigate();
@@ -38,7 +38,7 @@ useEffect(() => {
   const fetchChatHistory = async (receiverId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get(`https://unity-dev-xggp.3.us-1.fl0.io/messages/user/${receiverId}`, {
+      const response = await axios.get(`https://unity-backend-p0uh.onrender.com/messages/user/${receiverId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -9,7 +9,7 @@ export const getAllUnfollowedUsers = async (userId) => {
     const token = localStorage.getItem("token")
     
 
-    const response = await axios.get(`https://unity-dev-xggp.3.us-1.fl0.io/follows/unfollowingusers/${userId}`, {
+    const response = await axios.get(`https://unity-backend-p0uh.onrender.com/follows/unfollowingusers/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -26,7 +26,7 @@ export const getAllUnfollowedUsers = async (userId) => {
 export const followUser = async (userIdToFollow,name) => {
   try {
     const userId = localStorage.getItem("userId");
-    const socket = io('https://unity-dev-xggp.3.us-1.fl0.io'); // Replace with your server URL
+    const socket = io('https://unity-backend-p0uh.onrender.com'); // Replace with your server URL
     if (userId) {
       // Join the notification room using the user ID
       console.log(userId)
@@ -43,7 +43,7 @@ export const followUser = async (userIdToFollow,name) => {
     const token = localStorage.getItem("token");
   
 
-    const response = await axios.post(`https://unity-dev-xggp.3.us-1.fl0.io/follows/follow/${userIdToFollow}`, null, {
+    const response = await axios.post(`https://unity-backend-p0uh.onrender.com/follows/follow/${userIdToFollow}`, null, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -92,7 +92,7 @@ export const getAllFollowers = async (userId) => {
     const userId = localStorage.getItem("userId");
 
 
-    const response = await axios.get(`https://unity-dev-xggp.3.us-1.fl0.io/follows/getAllFollowers/${userId}`, {
+    const response = await axios.get(`https://unity-backend-p0uh.onrender.com/follows/getAllFollowers/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

@@ -8,7 +8,7 @@ export const getAllPosts = async (pagenum,limit) => {
       const token=localStorage.getItem("token")
       console.log(token)
     // Send a GET request to the appropriate endpoint to fetch all posts
-    const response = await axios.get(`https://unity-dev-xggp.3.us-1.fl0.io/posts/getposts/${limit}/?page=${pagenum}`, {
+    const response = await axios.get(`https://unity-backend-p0uh.onrender.com/posts/getposts/${limit}/?page=${pagenum}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -32,7 +32,7 @@ export const likeaPost = async (postId,username) => {
 
     // Send a POST request to the appropriate endpoint to like the post
     const response = await axios.post(
-      `https://unity-dev-xggp.3.us-1.fl0.io/posts/likepost`,
+      `https://unity-backend-p0uh.onrender.com/posts/likepost`,
       { postId ,username}, // Sending postId in the request body
       {
         headers: {
@@ -67,7 +67,7 @@ export const getUserProfile = async (user) => {
     console.log(token);
 
     // Send a GET request to the appropriate endpoint to fetch user profile
-    const response = await axios.get(`https://unity-dev-xggp.3.us-1.fl0.io/auth/getUserDetails/${userId}`, {
+    const response = await axios.get(`https://unity-backend-p0uh.onrender.com/auth/getUserDetails/${userId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -91,7 +91,7 @@ export const deletePost = async (postId) => {
     
     // Send a DELETE request to the appropriate endpoint to delete the post
     const response = await axios.delete(
-      `https://unity-dev-xggp.3.us-1.fl0.io/posts/delete/${postId}`,
+      `https://unity-backend-p0uh.onrender.com/posts/delete/${postId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -117,7 +117,7 @@ export const getAllcomments = async (postId) => {
 
     // Send a DELETE request to the appropriate endpoint to delete the post
     const response = await axios.get(
-      `https://unity-dev-xggp.3.us-1.fl0.io/posts/getAllComment/${postId}`,
+      `https://unity-backend-p0uh.onrender.com/posts/getAllComment/${postId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`
@@ -139,7 +139,7 @@ export const getAllcomments = async (postId) => {
 export const commentPost = async (postId, text) => {
   try {
     const token = localStorage.getItem("token");
-    const response = await axios.post('https://unity-dev-xggp.3.us-1.fl0.io/posts/commentpost', {
+    const response = await axios.post('https://unity-backend-p0uh.onrender.com/posts/commentpost', {
       postId: postId,
       text: text
     },      {

@@ -45,7 +45,7 @@ function CommunityPosts() {
   const [comments, setComments] = useState({}); // Define 'comments' state variable
   const [socket,setSocket]=useState(null)
   useEffect(() => {
-    setSocket(io("https://unity-dev-xggp.3.us-1.fl0.io"));
+    setSocket(io("https://unity-backend-p0uh.onrender.com"));
   }, []);
   
   const toggleChatModal = (postId) => {
@@ -108,7 +108,7 @@ function CommunityPosts() {
     try {
       const token = localStorage.getItem("token");
       const response = await axios.post(
-        "https://unity-dev-xggp.3.us-1.fl0.io/posts/commentpost",
+        "https://unity-backend-p0uh.onrender.com/posts/commentpost",
         {
           postId: postId,
           text: data.comment,

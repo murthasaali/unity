@@ -17,7 +17,7 @@ export const mycontext = createContext();
 function App() {
   useEffect(() => {
     // Establish the Socket.IO connection
-    const socket = io('https://unity-dev-xggp.3.us-1.fl0.io'); // Replace with your server URL
+    const socket = io('https://unity-backend-p0uh.onrender.com'); // Replace with your server URL
     const userId = localStorage.getItem("userId");
   
     // Check if user is authenticated
