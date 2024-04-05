@@ -162,9 +162,9 @@ function CommunityPosts() {
           receiverName: post.postedBy.username,
           type:"like"
         });
-        toast.success("You liked this post");
+        toasting("You liked this post ",  "😍😍");
       } else {
-        toast.error("You disliked this post");
+        toasting("You disliked this post ",  "🤐🤮");
       }
     } catch (error) {
       console.error(error);
