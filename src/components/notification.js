@@ -2,6 +2,11 @@ import React from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
 import { data } from 'autoprefixer';
+function formatDate(timestamp) {
+  const date = new Date(timestamp);
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZoneName: 'short' };
+  return date.toLocaleDateString('en-US', options);
+}
 
 const fetchNotifications = async () => {
   try {
@@ -42,7 +47,7 @@ function Notification() {
             <img className='h-10 w-10 rounded-full   ' src={notification.userId.image?notification.userId.image:"dcafsdfsdf"}/>
             <p className='font-thin text-md flex flex-col'>
               <div>{notification.text}</div>
-              <div className='text-xs text-stone-300'>  1minutes ago</div>
+              <div className='text-xs text-stone-300'> {formatDate(notification.timestamp)}</div>
 
             </p>
         </div> // Adjust this according to your notification structure
