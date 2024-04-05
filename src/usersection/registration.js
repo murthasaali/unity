@@ -18,7 +18,7 @@ export function Registration() {
 
     try {
       // Make a POST request to your server to handle registration
-      const response = await axios.post('https://unity-dev-xbcq.3.us-1.fl0.io/auth/register', {
+      const response = await axios.post('https://unity-dev-xggp.3.us-1.fl0.io/auth/register', {
         email:email,
         password:password,
         name:name

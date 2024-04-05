@@ -40,7 +40,7 @@ console.log(selectedFile)
       // Send POST request to create post
       console.log(data)
       const token=localStorage.getItem("token")
-      const response = await axios.post('https://unity-dev-xbcq.3.us-1.fl0.io/posts/createpost', {
+      const response = await axios.post('https://unity-dev-xggp.3.us-1.fl0.io/posts/createpost', {
         image: imageUrl, // Assuming imageUrl is the state containing the URL of the uploaded image
         caption: data.caption,
         hashtag: data.hashtag
