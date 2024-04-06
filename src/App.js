@@ -10,6 +10,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import UserChatModal from './components/userChatModal';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { io } from 'socket.io-client';
+import PostDetails from './usersection/postDetails';
 
 const queryClient = new QueryClient();
 export const mycontext = createContext();
@@ -57,6 +58,7 @@ function App() {
           <Route path='/' element={<Community />} />
           <Route path='/search' element={<Community />} />
           <Route path='/user/:userId' element={<UserDetails />} />
+          <Route path='/p/:postId' element={<PostDetails />} />
           <Route path='/chat' element={<Community />} />
           <Route path='/account' element={<Community />} />
           <Route path='/notification' element={<Community />} />

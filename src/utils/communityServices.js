@@ -152,3 +152,24 @@ export const commentPost = async (postId, text) => {
     throw error; // Throw error if request fails
   }
 };
+
+export const getAPost = async (postId) => {
+  try {
+    const token = localStorage.getItem("token");
+
+    // Send a GET request to the appropriate endpoint to fetch a single post
+    const response = await axios.get(`http://localhost:3001/posts/getapost/${postId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    // Return the data from the response
+    console.log(response.data)
+    return response.data.post;
+  } catch (error) {
+    // Handle any errors
+    console.error('Error fetching a post:', error);
+    throw error; // Re-throw the error to be caught by the caller
+  }
+};

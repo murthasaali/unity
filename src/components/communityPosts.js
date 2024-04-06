@@ -11,9 +11,11 @@ import toast from "react-hot-toast";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import axios from "axios";
 import { io } from "socket.io-client";
-
+import {useNavigate} from 'react-router-dom'
 import { IoSend } from "react-icons/io5";
 import Unfollowlist from "./unfollowlist";
+import { GiExpand } from "react-icons/gi";
+
 import { Player } from "@lottiefiles/react-lottie-player";
 import {
   getAllPosts,
@@ -33,6 +35,7 @@ const items = {
 
 function CommunityPosts() {
   const [commentOpen, setCommentOpen] = useState(false);
+  const nav=useNavigate()
 
   const { register, handleSubmit } = useForm();
   const [loadingPostId, setLoadingPostId] = useState(null);
@@ -205,6 +208,9 @@ function CommunityPosts() {
     // Fetch next page of posts
     fetchNextPage();
   };
+  const handlepostClick = (postId) => {
+    nav(`/p/${postId}`);
+  };
 
   return (
     <div className="h-full w-full ">
@@ -239,7 +245,7 @@ function CommunityPosts() {
                   </div>
                   <div className="flex items-center skeleton gap-3">
                     <button>
-                      <FaDotCircle />
+                      <GiExpand />
                     </button>
                   </div>
                 </div>
@@ -294,15 +300,12 @@ function CommunityPosts() {
                 <div className="w-full h-auto flex justify-between items-center mt-2">
                   <div className="flex justify-center items-end gap-[10px] bg-transparent">
                     <div className="w-14 h-14 rounded-full skeleton relative">
-                      {/* <FaPlus className='absolute bottom-1 p-1 bg-black rounded-full text-white text-xl right-1' /> */}
                     </div>
-
-                    {/* <img src={item.postedBy.image} className='h-10 w-10 md:h-14 md:w-14 rounded-full' /> */}
                     <p className="text-xs text-orange-500 p-3 w-20 skeleton"></p>
                   </div>
                   <div className="flex items-center skeleton gap-3">
                     <button>
-                      <FaDotCircle />
+                      <GiExpand />
                     </button>
                   </div>
                 </div>
@@ -373,10 +376,10 @@ function CommunityPosts() {
                       <MdSaveAlt />
                     </button>
                   </div>
-                  <div className="w-full h-auto flex justify-between items-center mt-2">
+                  <div className="w-full h-auto flex justify-between items-center mt-2" >
                     <div className="flex justify-center items-end gap-[10px] bg-transparent">
                       <div
-                        onDoubleClick={() => liking(item._id)}
+                        
                         className="w-10 h-10 rounded-full bg-white relative"
                         style={{
                           backgroundImage: `url(${item.postedBy.image})`,
@@ -403,13 +406,13 @@ function CommunityPosts() {
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
-                      <button>
-                        <FaDotCircle />
+                      <button onClick={()=>handlepostClick(item._id)}>
+                        <GiExpand />
                       </button>
                     </div>
                   </div>
                   <div
-                    className="h-[400px] md:h-[500px] relative  md:w-full w-full"
+                    className="h-[400px] md:h-[500px] relative  md:w-[90%] w-full"
                     style={{
                       backgroundImage: `url(${item.image})`,
                       backgroundSize: "cover",
