@@ -91,7 +91,7 @@ const username=localStorage.getItem("username")
               </div>
 
               <div className='flex justify-evenly'>
-                <button onClick={() => follow(user._id, user.username ? user.username : user.email)} className='py-1 px-4 text-black font-thin rounded-xl text-xs md:text-md  bg-gradient-to-r from-violet-500 to-fuchsia-500 '>
+                <button onClick={() => follow(user._id, user.username ? user.username : user.email)} className='py-1 px-4 text-black font-thin rounded-xl text-xs md:text-md bg-opacity-30 bg-gradient-to-r from-violet-500 to-fuchsia-500 '>
                   {"follow"}
                 </button>
               </div>
