@@ -96,7 +96,7 @@ function Notification() {
             {notifications.map(notification => (
               <div className='flex justify-between items-center'>
 
-              <div className='text-white flex gap-2 mt-2' key={notification.id}>
+              <div className='text-white flex gap-2 mt-4' key={notification.id}>
                 <img className='h-10 w-10 rounded-full' src={notification.userId.image ? notification.userId.image : "default-image-url"} alt="User Avatar" />
                 <p className='font-thin text-md flex flex-col'>
                   <div>{notification.text}</div>
