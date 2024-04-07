@@ -11,11 +11,28 @@ import UserChatModal from './components/userChatModal';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { io } from 'socket.io-client';
 import PostDetails from './usersection/postDetails';
-
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setNotificationCount } from './redux/authSlice';
 const queryClient = new QueryClient();
 export const mycontext = createContext();
 
 function App() {
+  const dispatch=useDispatch()
+  const fetchNotifications = async () => {
+    try {
+      const token = localStorage.getItem("token")
+      const response = await axios.get(`https://unity-dev-xggp.3.us-1.fl0.io/notification/getnotification`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      dispatch(      setNotificationCount(response.data.length)    )
+      return response.data.reverse()
+    } catch (error) {
+      throw new Error('Failed to fetch notifications');
+    }
+  };
   useEffect(() => {
     // Establish the Socket.IO connection
     const socket = io('https://unity-backend-p0uh.onrender.com'); // Replace with your server URL
@@ -33,7 +50,7 @@ function App() {
     socket.on('notification', (data) => {
       console.log('Notification received:', data);
     });
-  
+    fetchNotifications()
     // Clean up the socket connection on component unmount
     return () => {
       socket.disconnect();

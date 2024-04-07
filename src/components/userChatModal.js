@@ -10,9 +10,13 @@ import { MdKeyboardVoice } from "react-icons/md";
 import { FaImage, FaArrowLeft, FaCamera } from "react-icons/fa6";
 import { useQuery } from 'react-query';
 import { useNavigate } from 'react-router-dom';
+import { formatTimestamp } from "../constants/formatetime/fromatTime";
 
 // Initialize socket connection
 const socket = io("https://unity-backend-p0uh.onrender.com");
+
+
+
 
 function UserChatModal() {
   const nav = useNavigate();
@@ -43,6 +47,7 @@ useEffect(() => {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log(response.data.messages)
       setChatHistory(response.data.messages.reverse());
     } catch (error) {
       console.error('Error fetching chat history:', error.response ? error.response.data : error.message);
@@ -124,13 +129,22 @@ fetchChatHistory(userId)
             <div className="text-white w-full py-1 px-2 font-thin" key={index}>
               {message.type  === "sent" ? (
                 <div className="w-full flex h-auto justify-end">
+                  <div className="flex flex-col">
+
                   <div className="text-white text-opacity-80 w-fit   py-1 px-4 text-end bg-gradient-to-r from-sky-500 to-indigo-500 rounded-b-2xl text-md font-normal rounded-tl-2xl">{message.text}</div>
+                  <div className="text-[10px] text-stone-400">{formatTimestamp(message.timestamp)}</div>
+                 
+                  </div>
+                  
                 </div>
               ) : (
                 <div className="w-full flex h-auto gap-2 justify-start">
                   <img  src={item && item.image} className="h-7 w-7 rounded-full" alt={item && item.username} />
+                  <div className="flex flex-col">
 
                   <div className="text-white text-opacity-80 w-fit   py-1 px-4 text-end bg-gradient-to-r from-violet-500 to-fuchsia-500  rounded-b-2xl text-md font-normal rounded-tr-2xl">{message.text}</div>
+                  <div className="text-[10px] text-stone-400">{formatTimestamp(message.timestamp)}</div>
+                  </div>
                 </div>
               )}
             </div>

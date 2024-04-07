@@ -5,6 +5,7 @@ const initialState = {
   token: localStorage.getItem('token') || null,
   userId: localStorage.getItem('userId') || null,
   username: localStorage.getItem('username') || null,
+  notificationCount:localStorage.getItem("notificationCount")||0
 };
 
 const authSlice = createSlice({
@@ -13,15 +14,19 @@ const authSlice = createSlice({
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
-      localStorage.setItem('token', action.payload); // Save the token to local storage
+      localStorage.setItem('token', action.payload);
     },
     setUserid: (state, action) => {
       state.userId = action.payload;
-      localStorage.setItem('userId', action.payload); // Save the token to local storage
+      localStorage.setItem('userId', action.payload);
     },
     setUser: (state, action) => {
-      state.user = action.payload;
-      localStorage.setItem('username', action.payload); // Save the token to local storage
+      state.username = action.payload; // Corrected the key to username
+      localStorage.setItem('username', action.payload);
+    },
+    setNotificationCount: (state, action) => {
+      state.notificationCount = action.payload;
+      localStorage.setItem('notificationCount', action.payload);
     },
     logout: (state) => {
       state.token = null;
@@ -32,6 +37,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setToken,setUserid,logout,setUser } = authSlice.actions;
+export const { setToken, setUserid, setUser, setNotificationCount, logout } = authSlice.actions;
 export default authSlice.reducer;
-

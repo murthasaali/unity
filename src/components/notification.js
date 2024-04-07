@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import { useQuery } from 'react-query';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { setNotificationCount } from '../redux/authSlice';
 
 function formatDate(timestamp) {
   const date = new Date(timestamp);
@@ -25,6 +27,8 @@ function formatDate(timestamp) {
   }
 }
 
+
+
 const fetchNotifications = async () => {
   try {
     const token = localStorage.getItem("token")
@@ -36,15 +40,26 @@ const fetchNotifications = async () => {
     console.log(response.data)
     return response.data.reverse()
   } catch (error) {
+
     throw new Error('Failed to fetch notifications');
   }
 };
+
+
+
 
 function useNotifications() {
   return useQuery('notifications', fetchNotifications);
 }
 
 function Notification() {
+  const dispatch = useDispatch(); // Move useDispatch inside the functional component
+
+  useEffect(() => {
+    return () => {
+      dispatch(setNotificationCount(0))
+    }
+  }, [])
   const { data, isLoading, isError } = useNotifications();
 
   if (isLoading) {

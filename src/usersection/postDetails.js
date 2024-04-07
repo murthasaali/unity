@@ -1,16 +1,49 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import { FaArrowLeft, FaHeart } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import { IoSend } from "react-icons/io5";
 import { useParams } from "react-router-dom";
 import { useQuery } from "react-query";
-import { getAPost } from "../utils/communityServices";
+import { useForm } from "react-hook-form";
+
+import { getAllcomments, getAPost } from "../utils/communityServices";
 import {motion} from 'framer-motion'
 import { useNavigate } from "react-router-dom";
+import { container } from "../constants/framermotion";
+import axios from "axios";
+import toast from "react-hot-toast";
+const items = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+  },
+};
 function PostDetails() {
   const { postId } = useParams();
+  const [comments, setComments] = useState({}); // Define 'comments' state variable
+  const { register, handleSubmit } = useForm();
+
   const [commentOpen, setCommentOpen] = useState(false);
+  const fetchComment = async (postId) => {
+    console.log("fetching comment");
+    try {
+      const response = await getAllcomments(postId);
+      setComments((prevComments) => ({
+        ...prevComments,
+        [postId]: response,
+      }));
+      console.log(response);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchComment(postId);
+  }, [postId]); // Make sure to include postId in the dependency array to re-fetch comments when postId changes
+
   const nav =useNavigate()
   // Call the getAPost function using React Query
   const {
@@ -24,6 +57,32 @@ function PostDetails() {
 
   if (isLoading) return <div>Loading...</div>; // Render loading state while fetching post
   if (isError) return <div>Error: {error.message}</div>; // Render error state if fetching post fails
+
+  
+  const onSubmit = async (data, postId) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.post(
+        "https://unity-backend-p0uh.onrender.com/posts/commentpost",
+        {
+          postId: postId,
+          text: data.comment,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      toast.success("Commented post");
+      fetchComment(postId);
+    } catch (error) {
+      throw error; // Throw error if request fails
+    }
+  };
+
+
 
   return (
     <div className="w-full h-screen bg-black">
@@ -69,7 +128,7 @@ function PostDetails() {
                 backgroundRepeat: "no-repeat",
               }}
             >
-              <div className=" h-auto gap-3 flex flex-col w-full">
+              <div className=" h-auto gap-3 flex flex-col text-white w-full">
                 <div>
                   <p>{post.caption}</p>
                   <p>{post.hashtag}</p>
@@ -86,14 +145,21 @@ function PostDetails() {
             </div>
             {
               commentOpen&&
-              <form
+              <motion.form
+              variants={container}
+              onSubmit={handleSubmit((data) =>
+                onSubmit(data, postId)
+              )}
             
               className="flex gap-1 justify-start sticky top-0  items-start"
             >
               <motion.input
+              variants={items}
+              {...register("comment")}
+
                 placeholder="comment the post...."
                 name="comment"
-                className="bottom-0  bg-transparent right-0 w-[100%] rounded-xl h-8  text-white text-xs font-thin px-4 "
+                className="  bg-transparent right-0 w-[100%] rounded-xl h-12  text-white text-xs font-thin px-4 "
               />
               <button
                 className="h-8  flex justify-center items-center w-8 rounded-full  transition-all duration-300"
@@ -106,23 +172,29 @@ function PostDetails() {
               >
                 <IoSend className="text-white text-sm text-opacity-95" />
               </button>
-            </form>
+            </motion.form>
             }
-            <div className="flex justify-between  w-3/4  rounded-md mt-1 backdrop-blur-[3px]  px-2 py-1 text-xs  text-black">
-            <div className="flex gap-1 items-center h-auto justify-center">
-              <img
-                // src={comment.author.image}
-                className="h-14 w-14 rounded-full"
-                alt="hello"
-              />
-              <div className="bg-stone-50 bg-opacity-25 text-white font-thin w-fit p-1">
-                {/* {comment.text} */}
-                nice picture 😍z
-              </div>
-            </div>
-            <FaHeart className="text-blue-300 text-md" />
+      <div className="flex flex-col ">
+  {
+    comments[postId] && comments[postId].map((comment, index) => (
+      <div key={index} className="flex justify-between w-3/4 rounded-md mt-1 backdrop-blur-[3px] px-2 py-1 text-xs text-black">
+        <div className="flex gap-1 items-center h-auto justify-center">
+          <img
+            src={comment.author.image}
+            className="h-8 w-8 rounded-full"
+            alt="hello"
+          />
+          <div className="text-white text-opacity-80 w-fit   py-1 px-4  bg-gradient-to-r from-violet-500 to-fuchsia-500  rounded-b-2xl text-md font-normal text-start rounded-tr-2xl">
+            {comment.text}
+            {/* Removed hardcoded comment */}
           </div>
-          </div>
+        </div>
+      </div>
+    ))
+  }
+</div>
+</div>
+
         </div>
       </div>
     </div>
