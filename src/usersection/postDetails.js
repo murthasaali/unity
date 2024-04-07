@@ -39,7 +39,7 @@ function PostDetails() {
       </button >
       <p className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-2xl px-4 from-blue-500 to-purple-500">Post</p>
           </div>
-          <div className="md:w-[80%] w-full h-96  relative ">
+          <div className="md:w-[80%] w-full h-[420px]  relative ">
             <div className="flex justify-start items-end gap-[10px] bg-transparent">
               <div
                 className="w-10 h-10 rounded-full bg-white relative"
