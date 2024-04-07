@@ -11,6 +11,8 @@ import { getAllFollowers } from "../utils/followService";
 import UpdateProfile from "./Modals/updateProfile";
 import CreatePostModal from "./Modals/createPost";
 
+import CountUp from 'react-countup';
+
 function Account({ user, myAcount }) {
   const [userPosts, setUserPosts] = useState([]);
   const [open, setOpen] = useState(false);
@@ -58,32 +60,21 @@ function Account({ user, myAcount }) {
         >
           <FaPlus className="absolute bottom-1 p-1 bg-black rounded-full text-white text-xl right-1" />
         </div>
-        <div className="  flex flex-col justify-start items-center ">
-          <div>{userProfile.posts ? userProfile.posts.length : "0"}</div>
-          <div>posts</div>
+        <div className="  flex flex-col font-bold text-xl justify-start items-center">
+ <CountUp end={ userProfile.posts.length  ?  userProfile.posts.length  : 0} />  
+          <div className="font-normal text-xs md:text-md">posts</div>
         </div>
-        <div className="flex flex-col justify-start items-center">
-  <div>
-    {followerList ? (
-      userProfile.followersCount ? userProfile.followersCount.length : "0"
-    ) : (
-<Follow 
-  data={userProfile.followersCount ? userProfile.followersCount.length : 0}  
-  fun={() => getAllFollowers(userId)}
-/>
-    )}
-  </div>
-  <div onClick={() => setFollowerList(true)}>followers</div>
+        <div className="flex flex-col font-bold text-xl justify-start items-center">
+    
+ <CountUp end={userProfile.followersCount ? userProfile.followersCount.length : 0} />  
+  <div className="font-normal text-xs md:text-md" onClick={() => setFollowerList(true)}>followers</div>
 </div>
 
-        <div className="  flex flex-col justify-start items-center ">
-          <div>
-            {userProfile.followingCount
-              ? userProfile.followingCount.length
-              : "0"}
-          </div>
-          <div >following</div>
-        </div>
+<div className="flex flex-col font-bold text-xl justify-start items-center">
+  <CountUp end={userProfile.followingCount ? userProfile.followingCount.length : 0} />
+  <div className="font-normal text-xs md:text-md">following</div>
+</div>
+
       </div>
       <div className="w-full flex flex-col gap-1">
         <div className="px-3 text-white font-thin w-fit py-1 rounded-lg  bg-stone-800 bg-opacity-40">
@@ -95,26 +86,26 @@ function Account({ user, myAcount }) {
       </div>
       {myAcount ? (
         <div className="w-full flex justify-between text-xs  gap-1">
-          <div className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40 font-thin">
+          <div className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40 font-normal ">
 {userProfile&&
   <UpdateProfile  userProfile={userProfile}/>
 }          </div>
-          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
+          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-normal ">
             share profile
           </button>
-          <div className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40    font-thin">
+          <div className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40    font-normal">
             {" "}
             <CreatePostModal  />
           </div>
         </div>
       ) : (
-        <div className="w-full flex justify-between text-xs  gap-1">
-          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-thin">
+        <div className="w-full flex justify-between text-md  gap-1">
+          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-stone-800 bg-opacity-40     font-normal">
             share profile
           </button>
 
            {isFollowed?
-          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-blue-600  bg-opacity-40     font-thin">
+          <button className="md:p-2 p-1 w-[30%] rounded-lg bg-blue-600  bg-opacity-40     font-normal">
            following
           </button>
           :

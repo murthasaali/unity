@@ -16,6 +16,7 @@
     "lucide-react": "^0.363.0",
     "react": "^18.2.0",
     "react-animated-cursor": "^2.11.2",
+    "react-countup": "^6.5.3",
     "react-dom": "^18.2.0",
     "react-fa-icon": "^0.1.4",
     "react-hook-form": "^7.51.1",
