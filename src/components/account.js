@@ -8,6 +8,7 @@ import UpdateProfile from "./Modals/updateProfile";
 import CreatePostModal from "./Modals/createPost";
 
 import CountUp from 'react-countup';
+import ProfileView from "./Modals/profileView";
 
 function Account({ user, myAcount }) {
   const [userPosts, setUserPosts] = useState([]);
@@ -58,17 +59,7 @@ function Account({ user, myAcount }) {
       
       </div>
       <div className="w-full flex justify-between items-center">
-        <div
-          className="w-24 h-24 rounded-full bg-white relative"
-          style={{
-            backgroundImage: `url(${userProfile.image})`,
-            backgroundPosition: "center",
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-          }}
-        >
-          <FaPlus className="absolute bottom-1 p-1 bg-black rounded-full text-white text-xl right-1" />
-        </div>
+      <ProfileView userProfile={userProfile}/>
         <div className="  flex flex-col font-bold text-xl justify-start items-center">
  <CountUp end={ userProfile.posts.length  ?  userProfile.posts.length  : 0}   className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-md px-4 from-blue-500 to-purple-500"/>  
           <div className="font-normal text-xs md:text-md">posts</div>
