@@ -89,23 +89,7 @@ function CommunityPosts() {
     }
   };
 
-  const handleScroll = () => {
-    const scrollPosition = window.innerHeight + window.scrollY;
-    const pageHeight = document.documentElement.scrollHeight;
-    const lastIndexDisplayed = Math.min(
-      posts.length - 1,
-      Math.floor(scrollPosition / document.documentElement.clientHeight)
-    );
 
-    if (lastIndexDisplayed === 9) {
-      setPage((prevPage) => prevPage + 1);
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const onSubmit = async (data, postId) => {
     try {
@@ -335,9 +319,16 @@ function CommunityPosts() {
           </div>
         </>
       )}
+              <div className="w-full  flex">
+              <p className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-2xl px-4 from-blue-500 to-purple-500">Posts...</p>
+
+
+              </div>
+
       {posts &&
         posts.map((item, index) => (
           <>
+          
             <div className={`relative  mt-10`} key={index}>
               <div className="w-full backdrop-cyan-600 h-fit p-1 flex flex-col gap-2">
                 <div className="w-full md:h-[450px] h-auto bg-opacity-50 md:gap-4 gap-1  backdrop-blur-sm relative rounded-3xl flex flex-col justify-center md:px-4 p-0 items-center md:items-start">

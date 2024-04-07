@@ -108,7 +108,9 @@ fetchChatHistory(userId)
   // Return JSX for rendering the chat modal
   return (
     <div className="w-full h-screen bg-black flex justify-center items-center">
-      <div className="md:h-[100%] h-[100%]  w-full md:w-[750px] overflow-y-scroll flex flex-col justify-between items-center md:p-4 p-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
+      <div className="md:w-[70%] w-full h-full flex justify-end">
+
+      <div className="md:h-[100%] h-[100%]  w-full md:w-[70%] overflow-y-scroll flex flex-col justify-between items-center md:p-4 p-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         {/* Header section */}
         <div className=" top-0 left-0 right-0 md:h-16 h-14 gap-2 flex justify-between items-center  w-full my-3">
           <div className="w-auto flex justify-start items-center gap-3 px-2">
@@ -172,6 +174,8 @@ fetchChatHistory(userId)
           </div>
         </div>
       </div>
+      </div>
+
     </div>
   );
 }

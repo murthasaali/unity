@@ -3,11 +3,7 @@ import { useQuery } from "react-query";
 import { FaAnchor, FaArrowLeft, FaHeart, FaPlus } from "react-icons/fa6";
 import { deletePost, getUserProfile } from "../utils/communityServices";
 import { useNavigate } from "react-router-dom";
-import CreatePost from "./createPost";
-import { CiHeart } from "react-icons/ci";
-import SetProfileEditModal from "./setProfileEditModal";
-import Follow from "./Modals/follow";
-import { getAllFollowers } from "../utils/followService";
+import menu from '../assets/menu.png'
 import UpdateProfile from "./Modals/updateProfile";
 import CreatePostModal from "./Modals/createPost";
 
@@ -45,9 +41,22 @@ function Account({ user, myAcount }) {
   };
   const renderUserProfile = () => (
     <div className="w-full h-full flex  flex-col gap-4 p-2">
-      <button className="text-whitem text-3xl" onClick={() => nav("/search")}>
+     <div className="flex justify-between">  <button className="text-whitem text-3xl" onClick={() => nav("/search")}>
         <FaArrowLeft />
       </button>
+      
+      <div className="dropdown dropdown-bottom dropdown-end">
+  <div tabIndex={0} role="button" ><button className="text-whitem text-3xl" >
+        <img src={menu} className="h-8 w-8" />
+      </button></div>
+  <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+    <li><a>Item 1</a></li>
+    <li><a>Item 2</a></li>
+  </ul>
+</div>
+      
+      
+      </div>
       <div className="w-full flex justify-between items-center">
         <div
           className="w-24 h-24 rounded-full bg-white relative"

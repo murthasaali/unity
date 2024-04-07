@@ -14,10 +14,12 @@ import PostDetails from './usersection/postDetails';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setNotificationCount } from './redux/authSlice';
+import Sidbar from './components/sidbar';
 const queryClient = new QueryClient();
 export const mycontext = createContext();
 
 function App() {
+
   const dispatch=useDispatch()
   const fetchNotifications = async () => {
     try {
@@ -27,7 +29,7 @@ function App() {
           Authorization: `Bearer ${token}`
         }
       });
-      dispatch(      setNotificationCount(response.data.length)    )
+      dispatch( setNotificationCount(response.data ? response.data.length : 0) )
       return response.data.reverse()
     } catch (error) {
       throw new Error('Failed to fetch notifications');
@@ -68,7 +70,9 @@ function App() {
           position="top-center"
           reverseOrder={false}
         />
+<Sidbar nav={navigate}/>
         <Routes>
+
           <Route path='/login' element={<Login />} />
           <Route path='/chat/:userId' element={<UserChatModal />} />
           <Route path='/reg' element={<Registration />} />

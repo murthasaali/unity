@@ -83,7 +83,13 @@ function Notification() {
 
   return (
     <div className="w-full h-full flex flex-col justify-start items-center p-3">
+      
       <div className='gap-2 flex flex-col md:w-[80%] w-full '>
+      <div className="w-full  flex">
+              <p className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-2xl  from-blue-500 to-purple-500">Notifications..</p>
+
+
+              </div>
         {Object.entries(groupedNotifications).map(([category, notifications]) => (
           <div key={category} className='mt-4' >
             <h2 className="text-xl font-semibold ">{category}</h2>

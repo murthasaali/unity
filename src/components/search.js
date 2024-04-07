@@ -46,6 +46,11 @@ const Search = () => {
 
   return (
     <>
+      <div className="w-full  flex">
+              <p className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-2xl  from-blue-500 to-purple-500">Explore...</p>
+
+
+              </div>
       <div className="my-3 w-full">
         <input
           type="text"
@@ -78,7 +83,7 @@ const Search = () => {
               <motion.div
               variants={item}
                 key={index}
-                className="text-center text-3xl md:h-52 h-32"
+                className="text-center text-3xl md:h-52 h-32 hover:scale-105 transition-all duration-300"
                 style={{
                   backgroundImage: `url(${post.image})`,
                   backgroundPosition: "center",
@@ -107,7 +112,7 @@ const Search = () => {
           {accounts.map((user) => (
             <button
               key={user._id}
-              className="w-full flex h-20 gap-2 p-2"
+              className="w-full flex h-20 gap-2 p-2 hover:scale-105 transition-all duration-300"
               onClick={() => handleAccountClick(user._id)}
             >
               <div
