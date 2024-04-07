@@ -11,7 +11,7 @@ import toast from "react-hot-toast";
 import { BsEmojiSmileFill } from "react-icons/bs";
 import axios from "axios";
 import { io } from "socket.io-client";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import { IoSend } from "react-icons/io5";
 import Unfollowlist from "./unfollowlist";
 import { GiExpand } from "react-icons/gi";
@@ -35,7 +35,7 @@ const items = {
 
 function CommunityPosts() {
   const [commentOpen, setCommentOpen] = useState(false);
-  const nav=useNavigate()
+  const nav = useNavigate();
 
   const { register, handleSubmit } = useForm();
   const [loadingPostId, setLoadingPostId] = useState(null);
@@ -46,11 +46,11 @@ function CommunityPosts() {
   const [selectedPostId, setSelectedPostId] = useState(null); // State to track which post's chat modal is open
   const [likeLoading, setLikeLoading] = useState(false);
   const [comments, setComments] = useState({}); // Define 'comments' state variable
-  const [socket,setSocket]=useState(null)
+  const [socket, setSocket] = useState(null);
   useEffect(() => {
     setSocket(io("https://unity-backend-p0uh.onrender.com"));
   }, []);
-  
+
   const toggleChatModal = (postId) => {
     // Define 'toggleChatModal' function
     setCommentOpen(!commentOpen); // Toggle comment section visibility
@@ -133,42 +133,37 @@ function CommunityPosts() {
     if (socket) {
       const user = localStorage.getItem("username");
       socket.emit("newUser", user);
-      socket.on("getNotification", ({ senderName,type }) => {
+      socket.on("getNotification", ({ senderName, type }) => {
         console.log(`Received notification from ${senderName}`);
-        if(type==="like")
-        toasting(`${senderName} liked your post`,"💝")
-      else
-      toasting(`${senderName} following you `,"🖤")
+        if (type === "like") toasting(`${senderName} liked your post`, "💝");
+        else toasting(`${senderName} following you `, "🖤");
       });
     }
   }, [socket]);
-  
-  
-  
+
   const liking = async (post) => {
     try {
       setLoadingPostId(post._id);
-      const username=localStorage.getItem("username")
-      const userId=localStorage.getItem("userId")
-      console.log(post.postedBy)
-      const res = await likeaPost(post._id,username);
-      
-      
+      const username = localStorage.getItem("username");
+      const userId = localStorage.getItem("userId");
+      console.log(post.postedBy);
+      const res = await likeaPost(post._id, username);
+
       if (res.message === "Post liked successfully") {
         setLikeLoading(true);
         setTimeout(() => {
           setLikeLoading(false);
           setLoadingPostId(null);
         }, 3000);
-        const username=localStorage.getItem("username")
+        const username = localStorage.getItem("username");
         socket.emit("sendNotification", {
           senderName: username,
           receiverName: post.postedBy.username,
-          type:"like"
+          type: "like",
         });
-        toasting("You liked this post ",  "😍😍");
+        toasting("You liked this post ", "😍😍");
       } else {
-        toasting("You disliked this post ",  "🤐🤮");
+        toasting("You disliked this post ", "🤐🤮");
       }
     } catch (error) {
       console.error(error);
@@ -299,8 +294,7 @@ function CommunityPosts() {
                 </div>
                 <div className="w-full h-auto flex justify-between items-center mt-2">
                   <div className="flex justify-center items-end gap-[10px] bg-transparent">
-                    <div className="w-14 h-14 rounded-full skeleton relative">
-                    </div>
+                    <div className="w-14 h-14 rounded-full skeleton relative"></div>
                     <p className="text-xs text-orange-500 p-3 w-20 skeleton"></p>
                   </div>
                   <div className="flex items-center skeleton gap-3">
@@ -344,10 +338,7 @@ function CommunityPosts() {
       {posts &&
         posts.map((item, index) => (
           <>
-            <div
-              className={`relative  `}
-              key={index}
-            >
+            <div className={`relative  mt-10`} key={index}>
               <div className="w-full backdrop-cyan-600 h-fit p-1 flex flex-col gap-2">
                 <div className="w-full md:h-[450px] h-auto bg-opacity-50 md:gap-4 gap-1  backdrop-blur-sm relative rounded-3xl flex flex-col justify-center md:px-4 p-0 items-center md:items-start">
                   <div className="w-auto mt-2 text-xl md:p-3 p-0 bg-opacity-50 absolute right-0 md:flex hidden flex-col justify-around rounded-lg h-96">
@@ -376,10 +367,9 @@ function CommunityPosts() {
                       <MdSaveAlt />
                     </button>
                   </div>
-                  <div className="w-full h-auto flex justify-between items-center mt-2" >
+                  <div className="w-full h-auto flex justify-between items-center mt-2">
                     <div className="flex justify-center items-end gap-[10px] bg-transparent">
                       <div
-                        
                         className="w-10 h-10 rounded-full bg-white relative"
                         style={{
                           backgroundImage: `url(${item.postedBy.image})`,
@@ -393,7 +383,7 @@ function CommunityPosts() {
 
                       {/* <img src={item.postedBy.image} className='h-10 w-10 md:h-14 md:w-14 rounded-full' /> */}
                       <p
-                        className="text-xs text-orange-500"
+                        className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-md px-4 from-blue-500 to-purple-500"
                         onClick={() => {
                           setModalOpen(true);
                           setSelectedUser(item);
@@ -406,8 +396,13 @@ function CommunityPosts() {
                       </p>
                     </div>
                     <div className="flex items-center gap-3">
-                      <button onClick={()=>handlepostClick(item._id)}>
-                        <GiExpand />
+                      <button
+                        className="relative overflow-hidden focus:outline-none"
+                        onClick={() => handlepostClick(item._id)}
+                      >
+                        <span>
+                          <GiExpand />
+                        </span>
                       </button>
                     </div>
                   </div>

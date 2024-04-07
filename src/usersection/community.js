@@ -6,12 +6,16 @@ import { getAllPosts, getUserProfile } from '../utils/communityServices';
 import Search from '../components/search';
 import Notification from '../components/notification';
 import Account from '../components/account';
+import home from '../assets/home.png'
+import searchicon from '../assets/search_11999858.png'
+import chat from '../assets/live-chat_12597027.png'
 import Chat from '../components/chat';
+import heart from '../assets/heart.png'
 import CommunityPosts from '../components/communityPosts';
 
 function Community() {
     const [posts, setPosts] = useState([]);
-    const [userProfile, setUserProfile] = useState({});
+    const [userProfile, setUserProfile] = useState(null);
     const location = useLocation();
     const userId=localStorage.getItem("userId")
     console.log(location)
@@ -23,7 +27,8 @@ function Community() {
             try {
                 
                 const profileData = await getUserProfile();
-                setUserProfile(profileData.user);
+                console.log(profileData)
+                setUserProfile(profileData);
             } catch (error) {
                 console.error('Error fetching user profile:', error);
             }
@@ -64,11 +69,50 @@ function Community() {
     return (
         <div className='w-full h-screen flex flex-col justify-start items-center overflow-hidden bg-black'>
             <div className='w-full bg-black h-auto p-2 flex md:hidden justify-evenly absolute bottom-0 z-50'>
-                <button className={`h-fit p-3 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/' ? 'text-green-500' : ''}`} onClick={() => nav('/')}><CiHome className='hover:scale-125 transition-all duration-300' /></button>
-                <button className={`h-fit p-3 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/search' ? 'text-green-500' : ''}`} onClick={() => nav('/search')}><CiSearch className='hover:scale-125 transition-all duration-300' /></button>
-                <button className={`h-fit p-3 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/chat' ? 'text-green-500' : ''}`} onClick={() => nav('/chat')}><CiChat1 className='hover:scale-125 transition-all duration-300' /></button>
-                <button className={`h-fit p-3 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/notification' ? 'text-green-500' : ''}`} onClick={() => nav('/notification')}><CiHeart className='hover:scale-125 transition-all duration-300' /></button>
-                <button className={`h-fit p-3 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/account' ? 'text-green-500' : ''}`} onClick={() => nav('/account')}><CiUser className='hover:scale-125 transition-all duration-300' /></button>
+                <button className={`h-fit p-3 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/' ? 'text-green-500' : ''}`} onClick={() => nav('/')}>  <div className="w-8 h-8"     style={{
+                      backgroundImage: `url(${home})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                    }}>
+
+                    </div></button>
+                <button className={`h-fit p-2 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/search' ? 'text-green-500' : ''}`} onClick={() => nav('/search')}>  <div className="w-8 h-8"     style={{
+                      backgroundImage: `url(${searchicon})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                    }}>
+
+                    </div></button>
+                <button className={`h-fit p-2 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/chat' ? 'text-green-500' : ''}`} onClick={() => nav('/chat')}> <div className="w-8 h-8"     style={{
+                      backgroundImage: `url(${chat})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                    }}>
+
+                    </div></button>
+                <button className={`h-fit p-2 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/notification' ? 'text-green-500' : ''}`} onClick={() => nav('/notification')}> <div className="w-8 h-8"     style={{
+                      backgroundImage: `url(${heart})`,
+                      backgroundSize: "cover",
+                      backgroundPosition: "center",
+                      backgroundRepeat: "no-repeat",
+                    }}>
+
+                    </div></button>
+                    <button className={`h-fit p-2 text-2xl text-green-500 bg-opacity-60 ${location.pathname === '/account' ? 'text-green-500' : ''}`} onClick={() => nav('/account')}>
+  <div
+    style={{
+      backgroundImage: `url(${userProfile ? userProfile.image : ''})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+      backgroundRepeat: 'no-repeat',
+    }}
+    className="w-9 h-9 rounded-full border border-gradient border-gradient-purple"
+  ></div>
+</button>
+
             </div>
             <div className='w-full h-20 mb-2 hidden md:flex bg-black justify-between px-3 items-center'>
                 <div className='text-w text-xl font-thin'>pethouse</div>

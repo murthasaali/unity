@@ -105,12 +105,12 @@ fetchChatHistory(userId)
     <div className="w-full h-screen bg-black flex justify-center items-center">
       <div className="md:h-[650px] h-[90%] bg-opacity-40 bg-stone-800 w-full md:w-[750px] overflow-y-scroll flex flex-col justify-between items-center md:p-4 p-1" style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}>
         {/* Header section */}
-        <div className=" top-0 left-0 right-0 h-16 gap-2 flex justify-between items-center  w-full m-3">
+        <div className=" top-0 left-0 right-0 md:h-16 h-14 gap-2 flex justify-between items-center  w-full m-3">
           <div className="w-auto flex justify-center items-center">
-            <button className="h-full w-16 flex justify-center items-center " onClick={()=>nav("/chat")}>
+            <button className="h-full md:w-16 w-10 flex justify-center items-center " onClick={()=>nav("/chat")}>
               <FaArrowLeft />
             </button>
-            <img src={item && item.image} className="w-12 h-12 rounded-full" alt={item && item.username} />
+            <img src={item && item.image} className="nd:w-12 h-9 w-9 md:h-12 rounded-full" alt={item && item.username} />
             <div className="flex flex-col gap-1">
               <div className="text-stone-200 text-opacity-70">{item && item.email}</div>
               <div className="text-stone-200 text-xs">{item && item.username}</div>
@@ -128,7 +128,7 @@ fetchChatHistory(userId)
                 </div>
               ) : (
                 <div className="w-full flex h-auto justify-start">
-                  <div className="text-white text-opacity-80 w-fit font-thin text-xs py-1 px-4 text-end bg-stone-300 bg-opacity-20 rounded-b-2xl rounded-tl-2xl">{message.text}</div>
+                  <div className="text-white text-opacity-80 w-fit font-thin text-xs py-1 px-4 text-end bg-gradient-to-r from-violet-500 to-fuchsia-500  rounded-b-2xl rounded-tr-2xl">{message.text}</div>
                 </div>
               )}
             </div>

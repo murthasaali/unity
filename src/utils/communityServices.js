@@ -158,7 +158,7 @@ export const getAPost = async (postId) => {
     const token = localStorage.getItem("token");
 
     // Send a GET request to the appropriate endpoint to fetch a single post
-    const response = await axios.get(`http://localhost:3001/posts/getapost/${postId}`, {
+    const response = await axios.get(`https://unity-backend-p0uh.onrender.com/posts/getapost/${postId}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }

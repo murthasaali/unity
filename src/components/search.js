@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useQuery } from "react-query";
 import Account from "./account";
+import { Player } from '@lottiefiles/react-lottie-player'; // import Player from Lottie package
 
 const Search = () => {
   const [input, setInput] = useState("");
@@ -54,14 +55,22 @@ const Search = () => {
         />
       </div>
 
-      {!input.length > 0 ? (
+      {isAccountsError || isPostsError ? ( // Check if either accounts or posts query has an error
+        <div className="absolute bottom-0 left-[-10px] w-[150px] h-[150px] flex justify-center items-center" style={{ zIndex: 999 }}>
+          <Player
+            src="https://lottie.host/0bb4d081-4124-4a8c-987b-4a46982e91cc/Naj4kVQ2pk.json"
+            autoplay
+            loop
+            style={{ height: "150px", width: "150px" }}
+          ></Player>
+        </div>
+      ) : !input.length > 0 ? (
         isPostsLoading ? (
           <div className="grid-container grid w-full grid-cols-3 md:gap-2 gap-1">
-          {Array.from({ length: 15 }).map((_, index) => (
-            <div key={index} className="text-center text-3xl skeleton md:h-52 h-32"></div>
-          ))}
-        </div>
-        
+            {Array.from({ length: 15 }).map((_, index) => (
+              <div key={index} className="text-center text-3xl skeleton md:h-52 h-32"></div>
+            ))}
+          </div>
         ) : (
           <div className="grid-container grid w-full h-full bg-black overflow-y-scroll grid-cols-3 ">
             {posts.map((post, index) => (
@@ -73,7 +82,6 @@ const Search = () => {
                   backgroundPosition: "center",
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
-                  
                 }}
               ></div>
             ))}
@@ -81,72 +89,45 @@ const Search = () => {
         )
       ) : isAccountsLoading ? (
         <div className="w-full h-[90%] flex flex-col gap-3">
-
-          <div className="flex gap-4 items-center">
-            <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
-            <div className="flex flex-col gap-4">
-              <div className="skeleton h-4 w-20"></div>
-              <div className="skeleton h-4 w-28"></div>
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div className="flex gap-4 items-center" key={index}>
+              <div className="skeleton w-16 h-16 rounded-full shrink-0 "></div>
+              <div className="flex flex-col gap-4">
+                <div className="skeleton h-4 w-20"></div>
+                <div className="skeleton h-4 w-28"></div>
+              </div>
             </div>
-          </div>
-          <div className="flex gap-4 items-center">
-            <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
-            <div className="flex flex-col gap-4">
-              <div className="skeleton h-4 w-20"></div>
-              <div className="skeleton h-4 w-28"></div>
-            </div>
-          </div>
-          <div className="flex gap-4 items-center">
-            <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
-            <div className="flex flex-col gap-4">
-              <div className="skeleton h-4 w-20"></div>
-              <div className="skeleton h-4 w-28"></div>
-            </div>
-          </div>
-          <div className="flex gap-4 items-center">
-            <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
-            <div className="flex flex-col gap-4">
-              <div className="skeleton h-4 w-20"></div>
-              <div className="skeleton h-4 w-28"></div>
-            </div>
-          </div>
-          <div className="flex gap-4 items-center">
-            <div className="skeleton w-16 h-16 rounded-full shrink-0"></div>
-            <div className="flex flex-col gap-4">
-              <div className="skeleton h-4 w-20"></div>
-              <div className="skeleton h-4 w-28"></div>
-            </div>
-        </div>
+          ))}
         </div>
       ) : (
         <div className="w-full h-[90%] flex flex-col">
           {/* Render account search results */}
-            {accounts.map((user) => (
-              <button
-                key={user._id}
-                className="w-full flex h-20 gap-2 p-2"
-                onClick={() => handleAccountClick(user._id)}
-              >
-                <div
-                  className="w-14 h-14 rounded-full"
-                  style={{
-                    backgroundImage: `url(${user.image || emptypic})`,
-                    backgroundPosition: "center",
-                    backgroundRepeat: "no-repeat",
-                    backgroundSize: "cover",
-                  }}
-                ></div>
-                <div className="h-14 w-auto flex flex-col justify-center">
-                  <div className="text-white font-thin text-sm md:text-md">
-                    {user.username}
-                  </div>
-                  <div className="text-white font-thin text-xs md:text-xs">
-                    {user.email}
-                  </div>
+          {accounts.map((user) => (
+            <button
+              key={user._id}
+              className="w-full flex h-20 gap-2 p-2"
+              onClick={() => handleAccountClick(user._id)}
+            >
+              <div
+                className="w-14 h-14 rounded-full"
+                style={{
+                  backgroundImage: `url(${user.image || emptypic})`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                }}
+              ></div>
+              <div className="h-14 w-auto flex flex-col justify-center">
+                <div className="text-white font-thin text-sm md:text-md">
+                  {user.username}
                 </div>
-              </button>
-            ))}
-          </div>
+                <div className="text-white font-thin text-xs md:text-xs">
+                  {user.email}
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
       )}
     </>
   );
