@@ -61,17 +61,17 @@ function Account({ user, myAcount }) {
           <FaPlus className="absolute bottom-1 p-1 bg-black rounded-full text-white text-xl right-1" />
         </div>
         <div className="  flex flex-col font-bold text-xl justify-start items-center">
- <CountUp end={ userProfile.posts.length  ?  userProfile.posts.length  : 0} />  
+ <CountUp end={ userProfile.posts.length  ?  userProfile.posts.length  : 0}   className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-md px-4 from-blue-500 to-purple-500"/>  
           <div className="font-normal text-xs md:text-md">posts</div>
         </div>
         <div className="flex flex-col font-bold text-xl justify-start items-center">
     
- <CountUp end={userProfile.followersCount ? userProfile.followersCount.length : 0} />  
+ <CountUp end={userProfile.followersCount ? userProfile.followersCount.length : 0}  className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-md px-4 from-blue-500 to-purple-500"/>  
   <div className="font-normal text-xs md:text-md" onClick={() => setFollowerList(true)}>followers</div>
 </div>
 
-<div className="flex flex-col font-bold text-xl justify-start items-center">
-  <CountUp end={userProfile.followingCount ? userProfile.followingCount.length : 0} />
+<div className="flex flex-col font-bold text-xl justify-start items-center ">
+  <CountUp end={userProfile.followingCount ? userProfile.followingCount.length : 0}  className="text-transparent bg-clip-text bg-gradient-to-r font-bold text-md px-4 from-blue-500 to-purple-500"/>
   <div className="font-normal text-xs md:text-md">following</div>
 </div>
 
