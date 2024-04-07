@@ -6,7 +6,8 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import Account from "./account";
 import { Player } from '@lottiefiles/react-lottie-player'; // import Player from Lottie package
-
+import { motion } from "framer-motion";
+import { container, item } from "../constants/framermotion";
 const Search = () => {
   const [input, setInput] = useState("");
   const [selectedUserId, setSelectedUserId] = useState("");
@@ -56,9 +57,9 @@ const Search = () => {
       </div>
 
       {isAccountsError || isPostsError ? ( // Check if either accounts or posts query has an error
-        <div className="absolute bottom-0 left-[-10px] w-[150px] h-[150px] flex justify-center items-center" style={{ zIndex: 999 }}>
+        <div className="  left-[-10px] w-[150px] h-[150px] flex justify-center items-center" style={{ zIndex: 999 }}>
           <Player
-            src="https://lottie.host/0bb4d081-4124-4a8c-987b-4a46982e91cc/Naj4kVQ2pk.json"
+            src="https://lottie.host/bec086ad-49db-4ee4-b176-b0b4180e72bc/gyDu7GML0d.json"
             autoplay
             loop
             style={{ height: "150px", width: "150px" }}
@@ -72,9 +73,10 @@ const Search = () => {
             ))}
           </div>
         ) : (
-          <div className="grid-container grid w-full h-full bg-black overflow-y-scroll grid-cols-3 ">
+          <motion.div variants={container} className="grid-container grid w-full h-full bg-black overflow-y-scroll grid-cols-3 " >
             {posts.map((post, index) => (
-              <div
+              <motion.div
+              variants={item}
                 key={index}
                 className="text-center text-3xl md:h-52 h-32"
                 style={{
@@ -83,9 +85,9 @@ const Search = () => {
                   backgroundRepeat: "no-repeat",
                   backgroundSize: "cover",
                 }}
-              ></div>
+              ></motion.div>
             ))}
-          </div>
+          </motion.div>
         )
       ) : isAccountsLoading ? (
         <div className="w-full h-[90%] flex flex-col gap-3">

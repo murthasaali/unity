@@ -3,6 +3,7 @@ import { useQuery } from 'react-query';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setNotificationCount } from '../redux/authSlice';
+import { formatTimestamp } from '../constants/formatetime/fromatTime';
 
 function formatDate(timestamp) {
   const date = new Date(timestamp);
@@ -84,15 +85,21 @@ function Notification() {
     <div className="w-full h-full flex flex-col justify-start items-center p-3">
       <div className='gap-2 flex flex-col md:w-[80%] w-full '>
         {Object.entries(groupedNotifications).map(([category, notifications]) => (
-          <div key={category} >
+          <div key={category} className='mt-4' >
             <h2 className="text-xl font-semibold ">{category}</h2>
             {notifications.map(notification => (
+              <div className='flex justify-between items-center'>
+
               <div className='text-white flex gap-2 mt-2' key={notification.id}>
                 <img className='h-10 w-10 rounded-full' src={notification.userId.image ? notification.userId.image : "default-image-url"} alt="User Avatar" />
                 <p className='font-thin text-md flex flex-col'>
                   <div>{notification.text}</div>
-                  <div className='text-xs text-stone-300'> {formatDate(notification.timestamp)} ago</div>
+                  <div className='text-xs text-stone-300'> {formatTimestamp(notification.timestamp)} </div>
                 </p>
+              </div>
+           { 
+           notification.image&&
+           <img src={notification.image&&notification.image} className='h-8 w-8'/>}
               </div>
             ))}
           </div>
